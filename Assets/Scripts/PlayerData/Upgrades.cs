@@ -7,14 +7,18 @@ using TMPro;
 public class Upgrades : MonoBehaviour
 {
     public static Upgrades instance;
+    SzeneManager szeneManager;
     private const string PlayerGoldKey = "PlayerGold";
     private const string PlayerHealthKey = "PlayerHealth";
     [SerializeField] LevelGold levelGold;
     [SerializeField] private TMP_Text GlobalGoldText;
     [SerializeField] private TMP_Text HealthText;
+    [SerializeField] private TMP_Text raidcounter;
+    
 
     public int GlobalGold = 0;
     public int health = 3;
+    private int raidcount = 0;
 
 
     // Upgrades
@@ -39,10 +43,11 @@ public class Upgrades : MonoBehaviour
         GlobalGold = PlayerPrefs.GetInt(PlayerGoldKey, 0);
         health = PlayerPrefs.GetInt(PlayerHealthKey, 3);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
         
     }
 
-        void Update()
+        void Start()
         {
             HealthText.text = "Health: " + health;
         }
@@ -54,14 +59,20 @@ public class Upgrades : MonoBehaviour
         if (scene.buildIndex == 1)
         {
         levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
+        HealthText.text = "Health: " + health;
         }
         else
         {
         GlobalGoldText = GameObject.Find("GlobalGoldText").GetComponent<TextMeshProUGUI>();
+        raidcounter = GameObject.Find("Überfall").GetComponent<TextMeshProUGUI>();
+        GlobalGoldText.text = "Gold: " + GlobalGold;
+        raidcount = szeneManager.raid + 1;
+        raidcounter.text = "Raubzug Nr " + raidcount;
+        HealthText.text = "Health: " + health;
         }
 
         
-        GlobalGoldText.text = "Gold: " + GlobalGold;
+        
     }
     public void SaveGold()
     {
@@ -96,6 +107,9 @@ public class Upgrades : MonoBehaviour
         SzeneManager.instance.raid = 0;
         SzeneManager.instance.SaveRaid();
         GlobalGoldText.text = "Gold: " + GlobalGold;
+        raidcount = szeneManager.raid + 1;
+        raidcounter.text = "Raubzug Nr " + raidcount;
+        HealthText.text = "Health: " + health;
         
     }
 

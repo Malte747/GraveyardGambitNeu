@@ -1556,7 +1556,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   walkSpeed: 100
-  runSpeed: 200
+  runSpeed: 190
   walkPoint: {x: 0, y: 0, z: 0}
   patrolPoints:
   - {fileID: 0}
@@ -1569,6 +1569,7 @@ MonoBehaviour:
   - {fileID: 0}
   targetPoint: 0
   timeBetweenAttacks: 100
+  endScreenLose: {fileID: 0}
   sightRange: 663.1
   attackRange: 88
   playerInSightRange: 0
@@ -5103,7 +5104,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3071
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0

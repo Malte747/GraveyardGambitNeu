@@ -25,6 +25,9 @@ public class EnemyAi : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+    [SerializeField] private GameObject endScreenLose;
+    private CharacterController playerController;
+    private GameObject playerObj;
 
     //States
     public float sightRange, attackRange;
@@ -51,11 +54,15 @@ public class EnemyAi : MonoBehaviour
         levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
         getchased = GameObject.Find("PostProcessing").GetComponent<GetChased>();
         
+        
+        
     }
 
     private void Start()
     {
         player = GameObject.Find("Player(Clone)").transform;
+        playerObj = GameObject.Find("Player(Clone)");
+        playerController = playerObj.GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -181,7 +188,7 @@ private IEnumerator CheckSphere()
         getchased.Chase();
     }
 
-    private void AttackPlayer()
+    public void AttackPlayer()
     {
         agent.SetDestination(transform.position);
 
@@ -191,8 +198,21 @@ private IEnumerator CheckSphere()
         {
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-            levelGold.LoseGame();
+            StartCoroutine(DisableController());
+            endScreenLose.SetActive(true);
+            StartCoroutine(ExecuteAfterDelay());
         }
+    }
+
+     private IEnumerator DisableController()
+    {
+        yield return new WaitForSeconds(0f);
+        playerController.enabled = false;
+    }
+    private IEnumerator ExecuteAfterDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        levelGold.LoseGame();
     }
 
     private void ResetAttack()
