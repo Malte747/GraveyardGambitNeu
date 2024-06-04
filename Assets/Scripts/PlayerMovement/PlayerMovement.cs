@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     [SerializeField] private float sprintEnergy = 100f;
+    [SerializeField] private float maxsprintEnergy;
+    [SerializeField] public float sprintUpgrade;
     public float sprintDecreaseRate = 15f;
     public float sprintIncreaseRate = 5f;
     public float highsprintIncreaseRate = 10f;
@@ -21,18 +23,30 @@ public class PlayerMovement : MonoBehaviour
     private bool sprintReload = true;
     private bool firstExecution = false;
     private HeadBob headBob;
+    private Upgrades upgrades;
     
 
     void Awake()
     {
         _controller = GetComponent<CharacterController>();
         headBob = GetComponent<HeadBob>();
+        upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
         Sprint = GameObject.Find("Sprint").GetComponent<Slider>();
     }
 
+    void Start()
+    {
+        sprintUpgrade = upgrades.stamina;
+        sprintEnergy = sprintEnergy + sprintUpgrade;
+        maxsprintEnergy = sprintEnergy;
+        Sprint.maxValue = sprintEnergy;
+        sprintIncreaseRate = sprintIncreaseRate + sprintUpgrade / 10;
+        highsprintIncreaseRate = highsprintIncreaseRate + sprintUpgrade / 8;
+    }
     private void Update()
     {
         Sprint.value = sprintEnergy;
+       
 
          if (Input.GetKey(KeyCode.LeftShift) && sprintReady && _controller.velocity.magnitude != 0)
          {
@@ -54,9 +68,9 @@ public class PlayerMovement : MonoBehaviour
     {
         _controller.Move(_moveDirection * Time.deltaTime);
 
-        if (sprintEnergy >= 100f)
+        if (sprintEnergy >= maxsprintEnergy)
         {
-            sprintEnergy = 100f;
+            sprintEnergy = maxsprintEnergy;
             sprintReady = true;
             sprintReload = false;      
         }

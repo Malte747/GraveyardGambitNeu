@@ -56,5 +56,10 @@ public class SzeneManager : MonoBehaviour
         SaveRaid();
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
 
 }

@@ -50,37 +50,36 @@ public class GraveInteract : MonoBehaviour, IInteractable
                     if (randomAmount <= getGoldPercent)
                     {
                         int randomChance = Random.Range(0, 100);
-                        int finalChance = randomChance + increaseChance;
 
-                        if (finalChance <= 35)
-                        {
-                            levelGold.IncreaseGold(10);
-                            particlesystemCommon.gameObject.SetActive(true);
-                            Debug.Log("Common " + randomChance + " " + finalChance);
-                        }
-                    else if (finalChance <= 65)
+                        if (randomChance <= 50 - increaseChance*4)
                         {
                             levelGold.IncreaseGold(15);
+                            particlesystemCommon.gameObject.SetActive(true);
+                            Debug.Log("Common " + randomChance + " " + increaseChance*4);
+                        }
+                    else if (randomChance <= 78 - increaseChance*3)
+                        {
+                            levelGold.IncreaseGold(20);
                             particlesystemMedium.gameObject.SetActive(true);
-                            Debug.Log("Medium " + randomChance + " " + finalChance);
+                            Debug.Log("Medium " + randomChance + " " + increaseChance*3);
                         }
-                    else if (finalChance <= 85)
+                    else if (randomChance <= 93 - increaseChance*2)
                         {
-                            levelGold.IncreaseGold(25);
+                            levelGold.IncreaseGold(30);
                             particlesystemRare.gameObject.SetActive(true);
-                            Debug.Log("Rare " + randomChance + " " + finalChance);
+                            Debug.Log("Rare " + randomChance + " " + increaseChance*2);
                         }
-                    else if (finalChance <= 95)
+                    else if (randomChance <= 98 - increaseChance*1)
                         {
-                            levelGold.IncreaseGold(35);
+                            levelGold.IncreaseGold(40);
                             particlesystemEpic.gameObject.SetActive(true);
-                            Debug.Log("Epic " + randomChance + " " + finalChance);
+                            Debug.Log("Epic " + randomChance + " " + increaseChance*1);
                         }
                     else 
                         {
-                            levelGold.IncreaseGold(50);
+                            levelGold.IncreaseGold(60);
                             particlesystemLegendary.gameObject.SetActive(true);
-                            Debug.Log("Legendary " + randomChance + " " + finalChance);
+                            Debug.Log("Legendary " + randomChance );
                         }
 
                     }

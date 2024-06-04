@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 interface IInteractable 
@@ -12,9 +13,10 @@ interface IInteractable
 
 public class Interactor : MonoBehaviour
 {
+    Upgrades upgrades;
     public Transform InteractorSource;
     public float InteractRange;
-    public float holdDuration = 3f;
+    private float localHoldTimer;
     
     private Slider openGrave;
     public LayerMask ignoreLayers;
@@ -25,7 +27,11 @@ public class Interactor : MonoBehaviour
    void Start()
    {
     openGrave = GameObject.Find("ProgressGrave").GetComponent<Slider>();
+    upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
     openGrave.gameObject.SetActive(false);
+    localHoldTimer = upgrades.holdDuration;
+    openGrave.maxValue = localHoldTimer/10;
+    
    }
 
   
@@ -52,7 +58,7 @@ public class Interactor : MonoBehaviour
                 openGrave.gameObject.SetActive(true);
                 interactObj.InVisible();
 
-                if (holdTimer >= holdDuration)
+                if (holdTimer >= localHoldTimer/10)
                 {
                     InteractAfterDelay();
                     seeTarget = false;
