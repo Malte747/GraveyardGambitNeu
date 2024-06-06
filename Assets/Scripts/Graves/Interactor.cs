@@ -16,7 +16,8 @@ public class Interactor : MonoBehaviour
     Upgrades upgrades;
     public Transform InteractorSource;
     public float InteractRange;
-    private float localHoldTimer;
+    [SerializeField] private float localHoldTimer;
+    [SerializeField] private float floattimer;
     
     private Slider openGrave;
     public LayerMask ignoreLayers;
@@ -29,8 +30,9 @@ public class Interactor : MonoBehaviour
     openGrave = GameObject.Find("ProgressGrave").GetComponent<Slider>();
     upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
     openGrave.gameObject.SetActive(false);
-    localHoldTimer = 3;
-    openGrave.maxValue = 3;
+    localHoldTimer = upgrades.holdDuration;
+    floattimer = localHoldTimer/10;
+    openGrave.maxValue = floattimer;
     
    }
 
@@ -58,7 +60,7 @@ public class Interactor : MonoBehaviour
                 openGrave.gameObject.SetActive(true);
                 interactObj.InVisible();
 
-                if (holdTimer >= localHoldTimer)
+                if (holdTimer >= floattimer)
                 {
                     InteractAfterDelay();
                     seeTarget = false;

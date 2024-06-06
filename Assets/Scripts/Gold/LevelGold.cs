@@ -25,7 +25,7 @@ public class LevelGold : MonoBehaviour
     {
         levelGold = 0;
         levelGoldText = GameObject.Find("LevelGoldText").GetComponent<TextMeshProUGUI>();
-        enemyAi = GameObject.Find("Wärter").GetComponent<EnemyAi>();
+        enemyAi = GameObject.Find("Waerter").GetComponent<EnemyAi>();
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
         levelGoldText.text = "Gold: " + levelGold;
         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();

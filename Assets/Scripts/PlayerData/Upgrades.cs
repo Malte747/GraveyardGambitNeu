@@ -178,6 +178,8 @@ public class Upgrades : MonoBehaviour
 
     public void Reset()
     {
+        SzeneManager.instance.raid = 0;
+        SzeneManager.instance.SaveRaid();
         GlobalGold = 0;
         health  = 3;
         stamina = 0;
@@ -190,8 +192,6 @@ public class Upgrades : MonoBehaviour
         holdDurationcurrentLevel = 0;
         SaveGold();
         hearts.UpdateHearts();
-        SzeneManager.instance.raid = 0;
-        SzeneManager.instance.SaveRaid();
         GlobalGoldText.text = "Gold: " + GlobalGold;
         raidcount = szeneManager.raid + 1;
         raidcounter.text = "Raubzug Nr " + raidcount;
