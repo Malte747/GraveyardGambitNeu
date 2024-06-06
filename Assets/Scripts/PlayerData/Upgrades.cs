@@ -18,8 +18,8 @@ public class Upgrades : MonoBehaviour
     private const string GoldIncreaseKey = "GoldChanceIncreaseCurrentLevel";
     private const string EndTimerDecreaseKey = "EndTimerDecrease";
     private const string EndTimerDecreaseLevelKey = "EndTimerDecreaseCurrentLevel";
-    private const string holdDurationKey = "EndTimerDecrease";
-    private const string holdDurationLevelKey = "EndTimerDecreaseCurrentLevel";
+    private const string holdDurationKey = "HoldDuration";
+    private const string holdDurationLevelKey = "HoldDurationCurrentLevel";
     LevelGold levelGold;
     [SerializeField] HealthManager hearts;
     [SerializeField] private TMP_Text GlobalGoldText;
@@ -33,7 +33,7 @@ public class Upgrades : MonoBehaviour
 
     // Upgrades
     
-    private readonly int[] UpgradeCost = { 100, 200, 400, 800, 1600};
+    private readonly int[] UpgradeCost = { 100, 200, 300, 500, 800};
      private const int maxLevel = 5;
 
     // stamina Upgrade
@@ -59,6 +59,9 @@ public class Upgrades : MonoBehaviour
     private readonly int[] holdDurationValues = { 40, 30, 25, 20, 15, 5 };
     [SerializeField] public int holdDurationcurrentLevel = 0;
 
+    // Buy a Heart
+
+    public int heartCost = 1000;
 
 
 
@@ -144,13 +147,29 @@ public class Upgrades : MonoBehaviour
 
     public void LoseALife()
     {
-        if (health > 0)
+        if (health > 1)
         {
         health--;
         }
-        else if (health == 0)
+        else if (health == 1)
         {
             Reset();
+        }
+        SaveGold();
+    }
+
+    public void GainALife()
+    {
+        if ( GlobalGold >= heartCost && health < 3 )
+        {
+            health++;
+            GlobalGold = GlobalGold - heartCost;
+            GlobalGoldText.text = "Gold: " + GlobalGold;
+            hearts.GainLife();
+        }
+        else
+        {
+            Debug.Log("Already Max Health");
         }
         SaveGold();
     }

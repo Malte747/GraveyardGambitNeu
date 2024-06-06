@@ -39,19 +39,18 @@ public class GraveInteract : MonoBehaviour, IInteractable
         {
             if (levelGold != null)
             {
-                    levelGold.HigherEndTimerChance();
+                    int randomAmount = Random.Range(0, 100);
+                    if (randomAmount <= getGoldPercent)
+                    {
                     int randomCountdown = Random.Range(0, 100);
-                    Debug.Log(randomCountdown);
                     if (randomCountdown <= levelGold.endTimerChance)
                     {
                         levelGold.EndTimer();
                     }
-                    int randomAmount = Random.Range(0, 100);
-                    if (randomAmount <= getGoldPercent)
-                    {
-                        int randomChance = Random.Range(0, 100);
+                    levelGold.HigherEndTimerChance();
+                    int randomChance = Random.Range(0, 100);
 
-                        if (randomChance <= 50 - increaseChance*4)
+                    if (randomChance <= 50 - increaseChance*4)
                         {
                             levelGold.IncreaseGold(15);
                             particlesystemCommon.gameObject.SetActive(true);

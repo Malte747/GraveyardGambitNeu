@@ -7,14 +7,15 @@ public class ButtonScript : MonoBehaviour
 {
     private Upgrades upgrades;
 
-    private readonly int[] UpgradeCost = { 100, 200, 400, 800, 1600};
+    private readonly int[] UpgradeCost = { 100, 200, 300, 500, 800};
 
     // Texte
 
-    [SerializeField] private TMP_Text StaminaInfoText;
+   [SerializeField] private TMP_Text StaminaInfoText;
    [SerializeField] private TMP_Text GoldChanceInfoText;
    [SerializeField] private TMP_Text EndTimerDecreaseInfoText;
    [SerializeField] private TMP_Text holdDurationInfoText;
+   [SerializeField] private TMP_Text GainALifeInfoText;
     
     void Start()
     {
@@ -39,6 +40,11 @@ public class ButtonScript : MonoBehaviour
       public void UpgradeHoldTimer()
      {
         upgrades.UpgradeHoldTimer();
+     }
+
+      public void GainALife()
+     {
+        upgrades.GainALife();
      }
 
 
@@ -88,6 +94,18 @@ public class ButtonScript : MonoBehaviour
       else
       {
          holdDurationInfoText.text = $"Schneller Graben. Level: {upgrades.holdDurationcurrentLevel}";
+      }
+      }
+
+      public void GainALifeText()
+     {
+      if (upgrades.health <= 2)
+      {
+        GainALifeInfoText.text = $"Gewährt dir ein Leben.  Kosten: 300";
+      }
+      else
+      {
+         GainALifeInfoText.text = $"Maximale Anzahl an Leben erreicht";
       }
       }
 }

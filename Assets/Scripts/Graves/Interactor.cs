@@ -29,8 +29,8 @@ public class Interactor : MonoBehaviour
     openGrave = GameObject.Find("ProgressGrave").GetComponent<Slider>();
     upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
     openGrave.gameObject.SetActive(false);
-    localHoldTimer = upgrades.holdDuration;
-    openGrave.maxValue = localHoldTimer/10;
+    localHoldTimer = 3;
+    openGrave.maxValue = 3;
     
    }
 
@@ -58,7 +58,7 @@ public class Interactor : MonoBehaviour
                 openGrave.gameObject.SetActive(true);
                 interactObj.InVisible();
 
-                if (holdTimer >= localHoldTimer/10)
+                if (holdTimer >= localHoldTimer)
                 {
                     InteractAfterDelay();
                     seeTarget = false;

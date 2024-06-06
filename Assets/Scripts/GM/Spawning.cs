@@ -35,7 +35,7 @@ public class Spawning : MonoBehaviour
     {
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
 
-        if (szeneManager.raid >= 2 && szeneManager.raid <= 5)
+        if (szeneManager.raid >= 3 && szeneManager.raid <= 5)
         {
         foreach (GameObject obj in ExitToActivate)
         {

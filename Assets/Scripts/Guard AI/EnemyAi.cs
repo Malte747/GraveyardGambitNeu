@@ -13,6 +13,7 @@ public class EnemyAi : MonoBehaviour
     private Animator anim;
     LevelGold levelGold;
     GetChased getchased;
+    SzeneManager szeneManager;
     public float walkSpeed = 3;
     public float runSpeed = 5;
 
@@ -53,8 +54,7 @@ public class EnemyAi : MonoBehaviour
         anim = GetComponent<Animator>();
         levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
         getchased = GameObject.Find("PostProcessing").GetComponent<GetChased>();
-        
-        
+        szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
         
     }
 
@@ -133,7 +133,7 @@ private IEnumerator CheckSphere()
 
     private void Patroling()
     {
-        agent.speed = walkSpeed;
+        agent.speed = walkSpeed + szeneManager.raid * 2;
         anim.SetBool("Chasing", false);
         if (!walkPointSet) 
         {
@@ -181,7 +181,7 @@ private IEnumerator CheckSphere()
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
-        agent.speed = runSpeed;
+        agent.speed = runSpeed + szeneManager.raid * 4;
         chased = true;
         anim.SetBool("Chasing", true);
         anim.SetBool("Turning", false);

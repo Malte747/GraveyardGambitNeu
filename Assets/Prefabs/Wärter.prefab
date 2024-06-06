@@ -1556,7 +1556,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   walkSpeed: 100
-  runSpeed: 190
+  runSpeed: 170
   walkPoint: {x: 0, y: 0, z: 0}
   patrolPoints:
   - {fileID: 0}
@@ -1570,7 +1570,7 @@ MonoBehaviour:
   targetPoint: 0
   timeBetweenAttacks: 100
   endScreenLose: {fileID: 0}
-  sightRange: 663.1
+  sightRange: 538.5
   attackRange: 88
   playerInSightRange: 0
   playerInAttackRange: 0
