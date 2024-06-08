@@ -78,7 +78,7 @@ public class Upgrades : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        
         LoadData();
         SceneManager.sceneLoaded += OnSceneLoaded;
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
