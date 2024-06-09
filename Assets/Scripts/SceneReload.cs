@@ -11,6 +11,7 @@ public class ReloadScene : MonoBehaviour
     [SerializeField] private TMP_Text levelGoldEndText;
     private CharacterController playerController;
     private int levelEndGold;
+    private float duration = 3f;
     void Start()
     {
         levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
@@ -26,19 +27,38 @@ public class ReloadScene : MonoBehaviour
             StartCoroutine(DisableController());
             endScreen.SetActive(true);
             levelEndGold = levelGold.levelGold;
-            levelGoldEndText.text = levelEndGold + " Gold erbeutet";
+            
+            // levelGoldEndText.text = levelEndGold + " Gold erbeutet";
             StartCoroutine(ExecuteAfterDelay());
         }
+    }
+
+    private IEnumerator CountToTargetNumber(int target, float duration)
+    {
+        int startNumber = 0;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration); 
+            int currentNumber = Mathf.RoundToInt(Mathf.Lerp(startNumber, target, t));
+            levelGoldEndText.text = currentNumber.ToString() + " Gold erbeutet";
+            yield return null;
+        }
+
+        levelGoldEndText.text = target.ToString() + " Gold erbeutet"; 
     }
 
         private IEnumerator DisableController()
     {
         yield return new WaitForSeconds(3f);
+        StartCoroutine(CountToTargetNumber(levelEndGold, duration));
         playerController.enabled = false;
     }
     private IEnumerator ExecuteAfterDelay()
     {
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(8f);
         levelGold.WinGame();
     }
 }

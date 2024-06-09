@@ -98,10 +98,10 @@ public class Upgrades : MonoBehaviour
         else
         {
         hearts = GameObject.Find("GM").GetComponent<HealthManager>();
-        GlobalGoldText = GameObject.Find("GlobalGoldText").GetComponent<TextMeshProUGUI>();
         raidcounter = GameObject.Find("Überfall").GetComponent<TextMeshProUGUI>();
-        GlobalGoldText.text = "Gold: " + GlobalGold;
         raidcount = szeneManager.raid + 1;
+        GlobalGoldText = GameObject.Find("GlobalGoldText").GetComponent<TextMeshProUGUI>();
+        GlobalGoldText.text = "Gold: " + GlobalGold;
         raidcounter.text = "Raubzug Nr " + raidcount;
         
         }
