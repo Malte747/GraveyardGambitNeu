@@ -50,6 +50,11 @@ public class SzeneManager : MonoBehaviour
         Upgrades.instance.Reset();
     }
 
+        public void ResetHighscore()
+    {
+        Upgrades.instance.ResetHighscore();
+    }
+
     public void RaidCount()
     {
         raid++;

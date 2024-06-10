@@ -10,6 +10,7 @@ public class Upgrades : MonoBehaviour
 {
     public static Upgrades instance;
     SzeneManager szeneManager;
+    private const string HighScoreKey = "HighScore";
     private const string PlayerGoldKey = "PlayerGold";
     private const string PlayerHealthKey = "PlayerHealth";
     private const string PlayerStaminaKey = "PlayerStamina";
@@ -26,11 +27,14 @@ public class Upgrades : MonoBehaviour
     [SerializeField] HealthManager hearts;
     [SerializeField] private TMP_Text GlobalGoldText;
     [SerializeField] private TMP_Text raidcounter;
+    [SerializeField] private TMP_Text highscoreText;
     
 
     public int GlobalGold = 0;
     public int health = 3;
     private int raidcount = 0;
+    [SerializeField] private int highscore = 0;
+    private GameObject HighscoreText;
 
 
     // Upgrades
@@ -69,7 +73,7 @@ public class Upgrades : MonoBehaviour
 
     // Buy a Heart
 
-    public int heartCost = 1000;
+    public int heartCost = 300;
 
 
 
@@ -111,6 +115,18 @@ public class Upgrades : MonoBehaviour
         GlobalGoldText = GameObject.Find("GlobalGoldText").GetComponent<TextMeshProUGUI>();
         GlobalGoldText.text = "Gold: " + GlobalGold;
         raidcounter.text = "Raubzug Nr " + raidcount;
+        highscoreText = GameObject.Find("Highscore").GetComponent<TextMeshProUGUI>();
+        HighscoreText = GameObject.Find("Highscore");
+        highscoreText.text = "Highscore: " + highscore;
+        if (raidcount > highscore)
+        {
+            highscore = raidcount;
+            highscoreText.text = "Highscore: " + highscore;
+        }
+        if (highscore < 2)
+        {
+            HighscoreText.SetActive(false);
+        }
         
         }
 
@@ -120,6 +136,7 @@ public class Upgrades : MonoBehaviour
     private void LoadData()
     {
         GlobalGold = PlayerPrefs.GetInt(PlayerGoldKey, 0);
+        highscore = PlayerPrefs.GetInt(HighScoreKey, 0);
         health = PlayerPrefs.GetInt(PlayerHealthKey, 3);
         stamina = PlayerPrefs.GetInt(PlayerStaminaKey, 0);
         staminacurrentLevel = PlayerPrefs.GetInt(LevelKey, 0);
@@ -135,6 +152,7 @@ public class Upgrades : MonoBehaviour
     
     public void SaveGold()
     {
+        PlayerPrefs.SetInt(HighScoreKey, highscore);
         PlayerPrefs.SetInt(PlayerGoldKey, GlobalGold);
         PlayerPrefs.SetInt(PlayerHealthKey, health);
         PlayerPrefs.SetInt(PlayerStaminaKey, stamina);
@@ -186,6 +204,12 @@ public class Upgrades : MonoBehaviour
         SaveGold();
     }
 
+    public void ResetHighscore()
+    {
+        highscore = 0;
+        highscoreText.text = "Highscore: " + highscore;
+        HighscoreText.SetActive(false);
+    }
 
 
     public void Reset()
