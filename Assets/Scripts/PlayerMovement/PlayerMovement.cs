@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool firstExecution = false;
     private HeadBob headBob;
     private Upgrades upgrades;
+
     
 
     void Awake()
@@ -95,8 +96,8 @@ public class PlayerMovement : MonoBehaviour
                 input *=0.777f;
             }
 
-            _moveDirection.x = input.x * _settings.speed;
-            _moveDirection.z = input.y * _settings.speed;
+            _moveDirection.x = input.x * (_settings.speed + upgrades.addSpeed);
+            _moveDirection.z = input.y * (_settings.speed + upgrades.addSpeed);
             _moveDirection.y = -_settings.antiBump;
 
             _moveDirection = transform.TransformDirection(_moveDirection);
@@ -132,8 +133,8 @@ public class PlayerMovement : MonoBehaviour
                 input *=0.777f;
             }
 
-            _moveDirection.x = input.x * _settings.sprint;
-            _moveDirection.z = input.y * _settings.sprint;
+            _moveDirection.x = input.x * (_settings.sprint + upgrades.addSpeed);
+            _moveDirection.z = input.y * (_settings.sprint + upgrades.addSpeed);
             _moveDirection.y = -_settings.antiBump;
 
             _moveDirection = transform.TransformDirection(_moveDirection);
@@ -163,8 +164,8 @@ public class PlayerMovement : MonoBehaviour
                 input *=0.777f;
             }
 
-            _moveDirection.x = input.x * _settings.slow;
-            _moveDirection.z = input.y * _settings.slow;
+            _moveDirection.x = input.x * (_settings.slow + upgrades.addSpeed);
+            _moveDirection.z = input.y * (_settings.slow + upgrades.addSpeed);
             _moveDirection.y = -_settings.antiBump;
 
             _moveDirection = transform.TransformDirection(_moveDirection);

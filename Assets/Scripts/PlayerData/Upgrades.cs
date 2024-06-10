@@ -20,6 +20,8 @@ public class Upgrades : MonoBehaviour
     private const string EndTimerDecreaseLevelKey = "EndTimerDecreaseCurrentLevel";
     private const string holdDurationKey = "HoldDuration";
     private const string holdDurationLevelKey = "HoldDurationCurrentLevel";
+    private const string addSpeedKey = "AddSpeed";
+    private const string addSpeedLevelKey = "AddSpeedCurrentLevel";
     LevelGold levelGold;
     [SerializeField] HealthManager hearts;
     [SerializeField] private TMP_Text GlobalGoldText;
@@ -50,7 +52,7 @@ public class Upgrades : MonoBehaviour
     // EndTimerDecrease Upgrade
 
     public int endTimerDecrease = 0;
-    private readonly int[] endTimerDecreaseValues = { 0, 10, 20, 30, 40, 60 };
+    private readonly int[] endTimerDecreaseValues = { 0, 10, 20, 30, 50, 80 };
     [SerializeField] public int endTimerDecreasecurrentLevel = 0;
 
     // HoldDuration Upgrade
@@ -58,6 +60,12 @@ public class Upgrades : MonoBehaviour
     public int holdDuration = 40;
     private readonly int[] holdDurationValues = { 40, 30, 25, 20, 15, 5 };
     [SerializeField] public int holdDurationcurrentLevel = 0;
+
+    // Speed Upgrade
+
+    public int addSpeed = 0;
+    private readonly int[] addSpeedValues = { 0, 10, 20, 30, 40, 60};
+    [SerializeField] public int addSpeedcurrentLevel = 0;
 
     // Buy a Heart
 
@@ -121,6 +129,8 @@ public class Upgrades : MonoBehaviour
         endTimerDecreasecurrentLevel = PlayerPrefs.GetInt(EndTimerDecreaseLevelKey, 0);
         holdDuration = PlayerPrefs.GetInt(holdDurationKey, 0);
         holdDurationcurrentLevel = PlayerPrefs.GetInt(holdDurationLevelKey, 0);
+        addSpeed = PlayerPrefs.GetInt(addSpeedKey, 0);
+        addSpeedcurrentLevel = PlayerPrefs.GetInt(addSpeedLevelKey, 0);
     }
     
     public void SaveGold()
@@ -135,6 +145,8 @@ public class Upgrades : MonoBehaviour
         PlayerPrefs.SetInt(EndTimerDecreaseLevelKey, endTimerDecreasecurrentLevel);
         PlayerPrefs.SetInt(holdDurationKey, holdDuration);
         PlayerPrefs.SetInt(holdDurationLevelKey,holdDurationcurrentLevel);
+        PlayerPrefs.SetInt(addSpeedKey, addSpeed);
+        PlayerPrefs.SetInt(addSpeedLevelKey,addSpeedcurrentLevel);
         PlayerPrefs.Save();
     }
 
@@ -190,6 +202,8 @@ public class Upgrades : MonoBehaviour
         endTimerDecreasecurrentLevel = 0;
         holdDuration = 40;
         holdDurationcurrentLevel = 0;
+        addSpeed = 0;
+        addSpeedcurrentLevel = 0;
         SaveGold();
         hearts.UpdateHearts();
         GlobalGoldText.text = "Gold: " + GlobalGold;
@@ -259,6 +273,22 @@ public class Upgrades : MonoBehaviour
         else
         {
             Debug.Log("Hold Timer is already at max level or too expensive.");
+        }
+    }
+
+        public void UpgradeAddSpeed()
+    {
+        if (addSpeedcurrentLevel < maxLevel && GlobalGold >= UpgradeCost[addSpeedcurrentLevel])
+        {
+            GlobalGold = GlobalGold - UpgradeCost[addSpeedcurrentLevel];
+            GlobalGoldText.text = "Gold: " + GlobalGold;
+             addSpeedcurrentLevel++;
+             addSpeed = addSpeedValues[addSpeedcurrentLevel];
+            SaveGold();
+        }
+        else
+        {
+            Debug.Log("Add Speed is already at max level or too expensive.");
         }
     }
 

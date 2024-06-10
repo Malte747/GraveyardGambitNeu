@@ -16,6 +16,7 @@ public class ButtonScript : MonoBehaviour
    [SerializeField] private TMP_Text EndTimerDecreaseInfoText;
    [SerializeField] private TMP_Text holdDurationInfoText;
    [SerializeField] private TMP_Text GainALifeInfoText;
+   [SerializeField] private TMP_Text addSpeedInfoText;
     
     void Start()
     {
@@ -45,6 +46,10 @@ public class ButtonScript : MonoBehaviour
       public void GainALife()
      {
         upgrades.GainALife();
+     }
+           public void UpgradeAddSpeed()
+     {
+        upgrades.UpgradeAddSpeed();
      }
 
 
@@ -94,6 +99,18 @@ public class ButtonScript : MonoBehaviour
       else
       {
          holdDurationInfoText.text = $"Schneller Graben. Level: {upgrades.holdDurationcurrentLevel}";
+      }
+      }
+
+      public void AddSpeedText()
+     {
+      if (upgrades.addSpeedcurrentLevel <= 4)
+      {
+        addSpeedInfoText.text = $"Schneller Laufen und Sprinten. Level: {upgrades.addSpeedcurrentLevel} Kosten für das nächste Upgrade: {UpgradeCost[upgrades.addSpeedcurrentLevel]}";
+      }
+      else
+      {
+         addSpeedInfoText.text = $"Schneller Laufen und Sprinten. Level: {upgrades.addSpeedcurrentLevel}";
       }
       }
 
