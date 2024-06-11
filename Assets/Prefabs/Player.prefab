@@ -62,7 +62,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractorSource: {fileID: 5994760736782303494}
   InteractRange: 190
-  holdDuration: 3
+  localHoldTimer: 0
+  floattimer: 0
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -314,9 +315,11 @@ MonoBehaviour:
   _settings: {fileID: 11400000, guid: 92926b687bdb5ae4795461a1e1aead38, type: 2}
   currentSpeed: 0
   sprintEnergy: 100
+  maxsprintEnergy: 0
+  sprintUpgrade: 0
   sprintDecreaseRate: 25
   sprintIncreaseRate: 5
-  highsprintIncreaseRate: 15
+  highsprintIncreaseRate: 35
 --- !u!114 &25109671412146780
 MonoBehaviour:
   m_ObjectHideFlags: 0

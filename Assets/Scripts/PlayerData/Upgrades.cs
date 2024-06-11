@@ -10,6 +10,7 @@ public class Upgrades : MonoBehaviour
 {
     public static Upgrades instance;
     SzeneManager szeneManager;
+    ButtonScript buttonscript;
     private const string HighScoreKey = "HighScore";
     private const string PlayerGoldKey = "PlayerGold";
     private const string PlayerHealthKey = "PlayerHealth";
@@ -23,6 +24,7 @@ public class Upgrades : MonoBehaviour
     private const string holdDurationLevelKey = "HoldDurationCurrentLevel";
     private const string addSpeedKey = "AddSpeed";
     private const string addSpeedLevelKey = "AddSpeedCurrentLevel";
+    private const string OpenGatesKey = "OpenGates";
     LevelGold levelGold;
     [SerializeField] HealthManager hearts;
     [SerializeField] private TMP_Text GlobalGoldText;
@@ -32,7 +34,7 @@ public class Upgrades : MonoBehaviour
 
     public int GlobalGold = 0;
     public int health = 3;
-    private int raidcount = 0;
+    public int raidcount = 0;
     [SerializeField] private int highscore = 0;
     private GameObject HighscoreText;
 
@@ -74,6 +76,11 @@ public class Upgrades : MonoBehaviour
     // Buy a Heart
 
     public int heartCost = 300;
+
+    // Open Gates
+
+    public int openGates = 0;
+    public int openGatescost = 100;
 
 
 
@@ -118,6 +125,7 @@ public class Upgrades : MonoBehaviour
         highscoreText = GameObject.Find("Highscore").GetComponent<TextMeshProUGUI>();
         HighscoreText = GameObject.Find("Highscore");
         highscoreText.text = "Highscore: " + highscore;
+        buttonscript = GameObject.Find("GM").GetComponent<ButtonScript>();
         if (raidcount > highscore)
         {
             highscore = raidcount;
@@ -148,6 +156,7 @@ public class Upgrades : MonoBehaviour
         holdDurationcurrentLevel = PlayerPrefs.GetInt(holdDurationLevelKey, 0);
         addSpeed = PlayerPrefs.GetInt(addSpeedKey, 0);
         addSpeedcurrentLevel = PlayerPrefs.GetInt(addSpeedLevelKey, 0);
+        openGates = PlayerPrefs.GetInt(OpenGatesKey, 0);
     }
     
     public void SaveGold()
@@ -165,6 +174,7 @@ public class Upgrades : MonoBehaviour
         PlayerPrefs.SetInt(holdDurationLevelKey,holdDurationcurrentLevel);
         PlayerPrefs.SetInt(addSpeedKey, addSpeed);
         PlayerPrefs.SetInt(addSpeedLevelKey,addSpeedcurrentLevel);
+        PlayerPrefs.SetInt(OpenGatesKey,openGates);
         PlayerPrefs.Save();
     }
 
@@ -228,11 +238,13 @@ public class Upgrades : MonoBehaviour
         holdDurationcurrentLevel = 0;
         addSpeed = 0;
         addSpeedcurrentLevel = 0;
+        openGates = 0;
         SaveGold();
         hearts.UpdateHearts();
         GlobalGoldText.text = "Gold: " + GlobalGold;
         raidcount = szeneManager.raid + 1;
         raidcounter.text = "Raubzug Nr " + raidcount;
+        buttonscript.Reset();
         
     }
 
@@ -316,4 +328,23 @@ public class Upgrades : MonoBehaviour
         }
     }
 
+        public void DecimateOpenGates()
+    {
+        openGates--;
+    }
+
+     public void OpenGates()
+    {
+        if ( GlobalGold >= openGatescost && openGates < 1 )
+        {
+            openGates++;
+            GlobalGold = GlobalGold - openGatescost;
+            GlobalGoldText.text = "Gold: " + GlobalGold;
+        }
+        else
+        {
+            Debug.Log("Gates already Open");
+        }
+        SaveGold();
+    }
 }

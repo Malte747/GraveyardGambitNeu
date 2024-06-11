@@ -6,6 +6,8 @@ using TMPro;
 public class ButtonScript : MonoBehaviour
 {
     private Upgrades upgrades;
+    SzeneManager szeneManager;
+    public GameObject OpenGatesShop;
 
     private readonly int[] UpgradeCost = { 100, 200, 300, 500, 800};
 
@@ -17,11 +19,22 @@ public class ButtonScript : MonoBehaviour
    [SerializeField] private TMP_Text holdDurationInfoText;
    [SerializeField] private TMP_Text GainALifeInfoText;
    [SerializeField] private TMP_Text addSpeedInfoText;
+   [SerializeField] private TMP_Text OpenGatesInfoText;
     
     void Start()
     {
         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
-    }
+        szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
+        if (szeneManager.raid >= 3)
+        {
+         OpenGatesShop.SetActive(true);
+        }
+    } 
+
+      public void Reset()
+      {
+         OpenGatesShop.SetActive(false);
+      }
 
     
 
@@ -47,9 +60,13 @@ public class ButtonScript : MonoBehaviour
      {
         upgrades.GainALife();
      }
-           public void UpgradeAddSpeed()
+      public void UpgradeAddSpeed()
      {
         upgrades.UpgradeAddSpeed();
+     }
+      public void OpenGates()
+     {
+        upgrades.OpenGates();
      }
 
 
@@ -123,6 +140,18 @@ public class ButtonScript : MonoBehaviour
       else
       {
          GainALifeInfoText.text = $"Maximale Anzahl an Leben erreicht";
+      }
+      }
+
+      public void OpenGatesText()
+     {
+      if (upgrades.openGates < 1)
+      {
+        OpenGatesInfoText.text = $"Öffnet nächste Runde alle Tore.  Kosten: 100";
+      }
+      else
+      {
+         OpenGatesInfoText.text = $"Alle Tore sind nächste Runde offen";
       }
       }
 }

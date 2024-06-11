@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawning : MonoBehaviour
 {
     SzeneManager szeneManager;
+    Upgrades upgrades;
     public GameObject playerPrefab;
     public Transform[] spawnPoints;
     [SerializeField] private GameObject[] ExitToActivate;
@@ -29,12 +30,19 @@ public class Spawning : MonoBehaviour
         int randomIndex = Random.Range(0, spawnPoints.Length);
         Transform spawnPoint = spawnPoints[randomIndex];
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+        
     }
 
     void Start()
     {
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
-
+        upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
+        if (upgrades.openGates >= 1)
+        {
+            upgrades.DecimateOpenGates();
+        }
+        else
+        {
         if (szeneManager.raid >= 3 && szeneManager.raid <= 5)
         {
         foreach (GameObject obj in ExitToActivate)
@@ -79,6 +87,7 @@ public class Spawning : MonoBehaviour
         if (index1 == 2 || index2 == 2)
         {
             treeDeactivate.SetActive(false);
+        }
         }
         }
     }
