@@ -41,7 +41,7 @@ public class Upgrades : MonoBehaviour
 
     // Upgrades
     
-    private readonly int[] UpgradeCost = { 100, 200, 300, 500, 800};
+    private readonly int[] UpgradeCost = { 50, 100, 150, 300, 500};
      private const int maxLevel = 5;
 
     // stamina Upgrade
@@ -75,12 +75,12 @@ public class Upgrades : MonoBehaviour
 
     // Buy a Heart
 
-    public int heartCost = 300;
+    public int heartCost = 150;
 
     // Open Gates
 
     public int openGates = 0;
-    public int openGatescost = 100;
+    public int openGatescost = 50;
 
 
 
@@ -154,7 +154,7 @@ public class Upgrades : MonoBehaviour
         increaseChance = PlayerPrefs.GetInt(GoldIncreaseKey, 0);
         endTimerDecrease = PlayerPrefs.GetInt(EndTimerDecreaseKey, 0);
         endTimerDecreasecurrentLevel = PlayerPrefs.GetInt(EndTimerDecreaseLevelKey, 0);
-        holdDuration = PlayerPrefs.GetInt(holdDurationKey, 0);
+        holdDuration = PlayerPrefs.GetInt(holdDurationKey, 40);
         holdDurationcurrentLevel = PlayerPrefs.GetInt(holdDurationLevelKey, 0);
         addSpeed = PlayerPrefs.GetInt(addSpeedKey, 0);
         addSpeedcurrentLevel = PlayerPrefs.GetInt(addSpeedLevelKey, 0);

@@ -26,13 +26,13 @@ public class ReloadScene : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             levelGold.StopEndTimer();
-            pauseMenu.DisablePauseToggle();
             StartCoroutine(DisableController());
             endScreen.SetActive(true);
             levelEndGold = levelGold.levelGold;
             
             // levelGoldEndText.text = levelEndGold + " Gold erbeutet";
             StartCoroutine(ExecuteAfterDelay());
+            pauseMenu.DisablePauseToggle();
         }
     }
 

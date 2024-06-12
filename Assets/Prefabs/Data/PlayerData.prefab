@@ -51,6 +51,7 @@ MonoBehaviour:
   highscoreText: {fileID: 0}
   GlobalGold: 0
   health: 3
+  raidcount: 0
   highscore: 0
   staminacurrentLevel: 0
   increaseChance: 0
@@ -61,7 +62,9 @@ MonoBehaviour:
   holdDurationcurrentLevel: 0
   addSpeed: 0
   addSpeedcurrentLevel: 0
-  heartCost: 300
+  heartCost: 150
+  openGates: 0
+  openGatescost: 50
 --- !u!114 &4761666073300962991
 MonoBehaviour:
   m_ObjectHideFlags: 0
