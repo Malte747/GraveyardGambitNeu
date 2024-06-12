@@ -27,7 +27,7 @@ public class LevelGold : MonoBehaviour
         levelGoldText = GameObject.Find("LevelGoldText").GetComponent<TextMeshProUGUI>();
         enemyAi = GameObject.Find("Waerter").GetComponent<EnemyAi>();
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
-        levelGoldText.text = "Gold: " + levelGold;
+        levelGoldText.text = "" + levelGold;
         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
         endTimerChance = 0 + szeneManager.raid * 3 - upgrades.endTimerDecrease;
     }
@@ -78,13 +78,13 @@ public class LevelGold : MonoBehaviour
     {
         
         levelGold += getGold;
-        levelGoldText.text = "Gold: " + levelGold;
+        levelGoldText.text = "" + levelGold;
     }   
 
     public void LoseGame()
     {
         levelGold = 0;
-        levelGoldText.text = "Gold: " + levelGold;
+        levelGoldText.text = "" + levelGold;
         szeneManager.LoadMenu();
         upgrades.LoseALife();
     }

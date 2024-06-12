@@ -46,6 +46,7 @@ public class Interactor : MonoBehaviour
     {
         if (hitInfo.collider.CompareTag("Grave") && hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
         {
+            Debug.DrawRay(r.origin, r.direction * InteractRange, Color.yellow);
             interactObj.Visible();
             seeTarget = true;
 
@@ -72,6 +73,12 @@ public class Interactor : MonoBehaviour
                 openGrave.gameObject.SetActive(false);
                 holdTimer = 0f;
             }
+        }
+        else
+        {
+            seeTarget = false;
+            holdTimer = 0f;
+            openGrave.gameObject.SetActive(false);
         }
 
     }

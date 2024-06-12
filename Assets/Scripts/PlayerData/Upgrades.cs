@@ -120,7 +120,7 @@ public class Upgrades : MonoBehaviour
         raidcounter = GameObject.Find("Überfall").GetComponent<TextMeshProUGUI>();
         raidcount = szeneManager.raid + 1;
         GlobalGoldText = GameObject.Find("GlobalGoldText").GetComponent<TextMeshProUGUI>();
-        GlobalGoldText.text = "Gold: " + GlobalGold;
+        GlobalGoldText.text = "" + GlobalGold;
         raidcounter.text = "Raubzug Nr " + raidcount;
         highscoreText = GameObject.Find("Highscore").GetComponent<TextMeshProUGUI>();
         HighscoreText = GameObject.Find("Highscore");
@@ -182,7 +182,7 @@ public class Upgrades : MonoBehaviour
     {
         GlobalGold = GlobalGold + levelGold.levelGold;
         SaveGold();
-        GlobalGoldText.text = "Gold: " + GlobalGold;
+        GlobalGoldText.text = "" + GlobalGold;
     }
 
     public void LoseALife()
@@ -204,7 +204,7 @@ public class Upgrades : MonoBehaviour
         {
             health++;
             GlobalGold = GlobalGold - heartCost;
-            GlobalGoldText.text = "Gold: " + GlobalGold;
+            GlobalGoldText.text = "" + GlobalGold;
             hearts.GainLife();
         }
         else
@@ -241,7 +241,7 @@ public class Upgrades : MonoBehaviour
         openGates = 0;
         SaveGold();
         hearts.UpdateHearts();
-        GlobalGoldText.text = "Gold: " + GlobalGold;
+        GlobalGoldText.text = "" + GlobalGold;
         raidcount = szeneManager.raid + 1;
         raidcounter.text = "Raubzug Nr " + raidcount;
         buttonscript.Reset();
@@ -253,7 +253,7 @@ public class Upgrades : MonoBehaviour
         if (staminacurrentLevel < maxLevel && GlobalGold >= UpgradeCost[staminacurrentLevel])
         {
             GlobalGold = GlobalGold - UpgradeCost[staminacurrentLevel];
-            GlobalGoldText.text = "Gold: " + GlobalGold;
+            GlobalGoldText.text = "" + GlobalGold;
             staminacurrentLevel++;
             stamina = staminaValues[staminacurrentLevel];
             SaveGold();
@@ -269,7 +269,7 @@ public class Upgrades : MonoBehaviour
         if (goldChanceIncreasecurrentLevel < maxLevel && GlobalGold >= UpgradeCost[goldChanceIncreasecurrentLevel])
         {
             GlobalGold = GlobalGold - UpgradeCost[goldChanceIncreasecurrentLevel];
-            GlobalGoldText.text = "Gold: " + GlobalGold;
+            GlobalGoldText.text = "" + GlobalGold;
             goldChanceIncreasecurrentLevel++;
             increaseChance = goldChanceIncrease[goldChanceIncreasecurrentLevel];
             SaveGold();
@@ -285,7 +285,7 @@ public class Upgrades : MonoBehaviour
         if (endTimerDecreasecurrentLevel < maxLevel && GlobalGold >= UpgradeCost[endTimerDecreasecurrentLevel])
         {
             GlobalGold = GlobalGold - UpgradeCost[endTimerDecreasecurrentLevel];
-            GlobalGoldText.text = "Gold: " + GlobalGold;
+            GlobalGoldText.text = "" + GlobalGold;
              endTimerDecreasecurrentLevel++;
              endTimerDecrease = endTimerDecreaseValues[endTimerDecreasecurrentLevel];
             SaveGold();
@@ -301,7 +301,7 @@ public class Upgrades : MonoBehaviour
         if (holdDurationcurrentLevel < maxLevel && GlobalGold >= UpgradeCost[holdDurationcurrentLevel])
         {
             GlobalGold = GlobalGold - UpgradeCost[holdDurationcurrentLevel];
-            GlobalGoldText.text = "Gold: " + GlobalGold;
+            GlobalGoldText.text = "" + GlobalGold;
              holdDurationcurrentLevel++;
              holdDuration = holdDurationValues[holdDurationcurrentLevel];
             SaveGold();
@@ -317,7 +317,7 @@ public class Upgrades : MonoBehaviour
         if (addSpeedcurrentLevel < maxLevel && GlobalGold >= UpgradeCost[addSpeedcurrentLevel])
         {
             GlobalGold = GlobalGold - UpgradeCost[addSpeedcurrentLevel];
-            GlobalGoldText.text = "Gold: " + GlobalGold;
+            GlobalGoldText.text = "" + GlobalGold;
              addSpeedcurrentLevel++;
              addSpeed = addSpeedValues[addSpeedcurrentLevel];
             SaveGold();
@@ -339,7 +339,7 @@ public class Upgrades : MonoBehaviour
         {
             openGates++;
             GlobalGold = GlobalGold - openGatescost;
-            GlobalGoldText.text = "Gold: " + GlobalGold;
+            GlobalGoldText.text = "" + GlobalGold;
         }
         else
         {
