@@ -116,6 +116,8 @@ public class Upgrades : MonoBehaviour
         }
         else
         {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None; 
         hearts = GameObject.Find("GM").GetComponent<HealthManager>();
         raidcounter = GameObject.Find("Überfall").GetComponent<TextMeshProUGUI>();
         raidcount = szeneManager.raid + 1;

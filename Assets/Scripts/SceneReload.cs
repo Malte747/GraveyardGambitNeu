@@ -6,6 +6,7 @@ using TMPro;
 public class ReloadScene : MonoBehaviour
 {
     LevelGold levelGold;
+    PasueMenu pauseMenu;
     private GameObject player;
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TMP_Text levelGoldEndText;
@@ -15,6 +16,7 @@ public class ReloadScene : MonoBehaviour
     void Start()
     {
         levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
+        pauseMenu = GameObject.Find("GM").GetComponent<PasueMenu>();
         player = GameObject.Find("Player(Clone)");
         playerController = player.GetComponent<CharacterController>();
     }
@@ -24,6 +26,7 @@ public class ReloadScene : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             levelGold.StopEndTimer();
+            pauseMenu.DisablePauseToggle();
             StartCoroutine(DisableController());
             endScreen.SetActive(true);
             levelEndGold = levelGold.levelGold;

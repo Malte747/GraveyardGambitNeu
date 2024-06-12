@@ -92,4 +92,12 @@ _camera.localPosition += motion;
       _frequency = 5.0f;
    }
 
+   public void DisableHeadBob()
+   {
+      _enable = false;
+   }
+   public void EnableHeadBob()
+   {
+      _enable = true;
+   }
 }

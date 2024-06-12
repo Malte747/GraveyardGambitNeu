@@ -14,6 +14,7 @@ public class EnemyAi : MonoBehaviour
     LevelGold levelGold;
     GetChased getchased;
     SzeneManager szeneManager;
+    PasueMenu pauseMenu;
     public float walkSpeed = 3;
     public float runSpeed = 5;
 
@@ -63,6 +64,7 @@ public class EnemyAi : MonoBehaviour
         player = GameObject.Find("Player(Clone)").transform;
         playerObj = GameObject.Find("Player(Clone)");
         playerController = playerObj.GetComponent<CharacterController>();
+        pauseMenu = GameObject.Find("GM").GetComponent<PasueMenu>();
     }
 
     private void Update()
@@ -197,6 +199,7 @@ private IEnumerator CheckSphere()
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
+            pauseMenu.DisablePauseToggle();
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
             StartCoroutine(DisableController());
             endScreenLose.SetActive(true);

@@ -81,6 +81,11 @@ public class LevelGold : MonoBehaviour
         levelGoldText.text = "" + levelGold;
     }   
 
+    public void Aufgeben()
+    {
+        enemyAi.AttackPlayer();
+    }
+
     public void LoseGame()
     {
         levelGold = 0;
