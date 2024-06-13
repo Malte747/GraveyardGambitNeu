@@ -75,7 +75,7 @@ public class Upgrades : MonoBehaviour
 
     // Buy a Heart
 
-    public int heartCost = 150;
+    public int heartCost = 100;
 
     // Open Gates
 

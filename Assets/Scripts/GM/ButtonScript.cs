@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Microsoft.Unity.VisualStudio.Editor;
 
 public class ButtonScript : MonoBehaviour
 {
@@ -271,7 +270,7 @@ public class ButtonScript : MonoBehaviour
       {
         GainALifeInfoText.text = $"Fülle ein fehlendes Herz wieder auf";
         BuyALifePrice.gameObject.SetActive(true);
-        GainALifeInfoText.text = "" + upgrades.heartCost;
+        GainALifePriceInfoText.text = "" + upgrades.heartCost;
       }
       else
       {
