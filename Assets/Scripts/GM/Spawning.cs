@@ -43,7 +43,7 @@ public class Spawning : MonoBehaviour
         }
         else
         {
-        if (szeneManager.raid >= 3 && szeneManager.raid <= 5)
+        if (szeneManager.raid >= 3 && szeneManager.raid <= 8)
         {
         foreach (GameObject obj in ExitToActivate)
         {
@@ -63,7 +63,7 @@ public class Spawning : MonoBehaviour
         }
         }
 
-        else if (szeneManager.raid >= 6 )
+        else if (szeneManager.raid >= 9 )
         {
         foreach (GameObject obj in ExitToActivate)
         {

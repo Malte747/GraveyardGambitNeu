@@ -6,7 +6,7 @@ public class GraveInteract : MonoBehaviour, IInteractable
 {
          LevelGold levelGold;
          Interactor interactor;
-        public float getGoldPercent = 69f;
+        public float getGoldPercent = 79f;
         public Canvas canvastext;
         public GameObject particlesystem;
         public GameObject particlesystemCommon;

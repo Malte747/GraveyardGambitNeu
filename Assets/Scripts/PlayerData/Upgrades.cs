@@ -184,7 +184,6 @@ public class Upgrades : MonoBehaviour
     {
         GlobalGold = GlobalGold + levelGold.levelGold;
         SaveGold();
-        GlobalGoldText.text = "" + GlobalGold;
     }
 
     public void LoseALife()

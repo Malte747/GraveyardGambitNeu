@@ -16198,7 +16198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cf5bdce3b266746ba6dca98e75fc87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getGoldPercent: 69
+  getGoldPercent: 79
   canvastext: {fileID: 7433250311466445680}
   particlesystem: {fileID: 730063751477466747}
   particlesystemCommon: {fileID: 2758719617786208348}
