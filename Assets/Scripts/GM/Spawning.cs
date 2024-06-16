@@ -7,7 +7,9 @@ public class Spawning : MonoBehaviour
     SzeneManager szeneManager;
     Upgrades upgrades;
     public GameObject playerPrefab;
+    public GameObject BigGrave;
     public Transform[] spawnPoints;
+    public Transform[] spawnPointsBigGrave;
     [SerializeField] private GameObject[] ExitToActivate;
     [SerializeField] private GameObject gateDeactivate;
      [SerializeField] private GameObject treeDeactivate;
@@ -30,6 +32,22 @@ public class Spawning : MonoBehaviour
         int randomIndex = Random.Range(0, spawnPoints.Length);
         Transform spawnPoint = spawnPoints[randomIndex];
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        if (BigGrave == null)
+        {
+            Debug.LogError("Grave Prefab not assigned!");
+            return;
+        }
+
+        if (spawnPoints.Length == 0)
+        {
+            Debug.LogError("Grave Spawn points array is empty!");
+            return;
+        }
+
+        int randomIndexGrave = Random.Range(0, spawnPointsBigGrave.Length);
+        Transform spawnPointGrave = spawnPointsBigGrave[randomIndexGrave];
+        Instantiate(BigGrave, spawnPointGrave.position, spawnPointGrave.rotation);
         
     }
 
