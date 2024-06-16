@@ -22,6 +22,11 @@ public class PlayerMovement : MonoBehaviour
     private bool sprintReady = true;
     private bool sprintReload = true;
     private bool firstExecution = false;
+
+    [SerializeField] private AudioClip stepnorm; 
+    [SerializeField] private AudioClip stepsprint; 
+    [SerializeField] private AudioClip stepslow; 
+
     private HeadBob headBob;
     private Upgrades upgrades;
 
@@ -52,14 +57,17 @@ public class PlayerMovement : MonoBehaviour
          if (Input.GetKey(KeyCode.LeftShift) && sprintReady && _controller.velocity.magnitude != 0)
          {
             SprintMovement();
+            SoundFXManager.instance.PlaySoundFXClipOneTime(stepsprint, transform, 0.2f);
          }
          else if(!sprintReady)
          {
             SlowMovement();
+            
          }
          else
          {
             DefaultMovement();
+            
          }
 
   
@@ -94,8 +102,14 @@ public class PlayerMovement : MonoBehaviour
             if (input.x != 0 && input.y !=0)
             {
                 input *=0.777f;
+                
+            }
+            if (input.x != 0 || input.y !=0)
+            {
+                SoundFXManager.instance.PlaySoundFXClipOneTime(stepnorm, transform, 0.2f);
             }
 
+            
             _moveDirection.x = input.x * (_settings.speed + upgrades.addSpeed);
             _moveDirection.z = input.y * (_settings.speed + upgrades.addSpeed);
             _moveDirection.y = -_settings.antiBump;
@@ -162,6 +176,10 @@ public class PlayerMovement : MonoBehaviour
             if (input.x != 0 && input.y !=0)
             {
                 input *=0.777f;
+            }
+            if (input.x != 0 || input.y !=0)
+            {
+                SoundFXManager.instance.PlaySoundFXClipOneTime(stepslow, transform, 0.2f);
             }
 
             _moveDirection.x = input.x * (_settings.slow + upgrades.addSpeed);

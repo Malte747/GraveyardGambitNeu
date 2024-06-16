@@ -69,6 +69,7 @@ MonoBehaviour:
     m_Bits: 8
   seeTarget: 0
   holdTimer: 0
+  Digging: {fileID: 8300000, guid: b756c96c49c45734382611610e77c131, type: 3}
 --- !u!1 &3280367321421054922
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +321,9 @@ MonoBehaviour:
   sprintDecreaseRate: 25
   sprintIncreaseRate: 5
   highsprintIncreaseRate: 35
+  stepnorm: {fileID: 8300000, guid: 38bc7de0796421d4d8aa082b4b4e6b76, type: 3}
+  stepsprint: {fileID: 8300000, guid: abeb956e053bd6d42b5a5a9f7ef07428, type: 3}
+  stepslow: {fileID: 8300000, guid: 40555e4dd35828140968365f58814e8a, type: 3}
 --- !u!114 &25109671412146780
 MonoBehaviour:
   m_ObjectHideFlags: 0

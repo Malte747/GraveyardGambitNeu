@@ -14,6 +14,7 @@ public class GraveBigInteract : MonoBehaviour, IInteractable
         private Animator animator;
         Upgrades upgrades;
          [SerializeField] private string LidTrigger = "LidTrigger";
+         [SerializeField] private AudioClip SuperLegendary; 
         
 
         void Start()
@@ -42,6 +43,7 @@ public class GraveBigInteract : MonoBehaviour, IInteractable
                     
                             
                             StartCoroutine(ActivateParticleSystemAfterDelay(2f));
+                            SoundFXManager.instance.PlaySoundFXClip(SuperLegendary, transform, 0.8f);
                             boxCollider.enabled = false;
                             animator.SetTrigger(LidTrigger);
                             Debug.Log("Jackpot");

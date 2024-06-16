@@ -25,6 +25,8 @@ public class Interactor : MonoBehaviour
     [SerializeField] public bool seeTarget = false;
     [SerializeField] private float holdTimer = 0f;
 
+    [SerializeField] private AudioClip Digging; 
+
    void Start()
    {
     openGrave = GameObject.Find("ProgressGrave").GetComponent<Slider>();
@@ -60,6 +62,10 @@ public class Interactor : MonoBehaviour
                 holdTimer += Time.deltaTime;
                 openGrave.gameObject.SetActive(true);
                 interactObj.InVisible();
+                if (hitInfo.collider.gameObject.layer != LayerMask.NameToLayer("Grave"))
+                {
+                    SoundFXManager.instance.PlaySoundFXClipOneTime(Digging, transform, 0.5f);
+                }
 
                 if (holdTimer >= floattimer)
                 {
@@ -72,6 +78,7 @@ public class Interactor : MonoBehaviour
             {
                 openGrave.gameObject.SetActive(false);
                 holdTimer = 0f;
+                
             }
         }
         else
@@ -79,6 +86,7 @@ public class Interactor : MonoBehaviour
             seeTarget = false;
             holdTimer = 0f;
             openGrave.gameObject.SetActive(false);
+            
         }
 
     }
@@ -87,6 +95,7 @@ public class Interactor : MonoBehaviour
             seeTarget = false;
             holdTimer = 0f;
             openGrave.gameObject.SetActive(false);
+            
     }
 }
 

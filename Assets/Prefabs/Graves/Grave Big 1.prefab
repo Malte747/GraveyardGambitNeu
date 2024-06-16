@@ -5851,6 +5851,7 @@ MonoBehaviour:
   particlesystem: {fileID: 474752413454825862}
   Lid: {fileID: 3192951378472897423}
   LidTrigger: LidTrigger
+  SuperLegendary: {fileID: 8300000, guid: 290572d6146eb2641abcb59244c15e17, type: 3}
 --- !u!95 &2034020356798176322
 Animator:
   serializedVersion: 5

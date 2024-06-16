@@ -11,6 +11,10 @@ public class LevelGold : MonoBehaviour
     public int endTimerChance;
     private bool endTimerStarted = false;
     private Coroutine countdownCoroutine;
+
+    [SerializeField] private GameObject light1;
+    [SerializeField] private GameObject light2;
+    [SerializeField] private GameObject light3;
   
     
     private TMP_Text levelGoldText;
@@ -29,7 +33,7 @@ public class LevelGold : MonoBehaviour
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
         levelGoldText.text = "" + levelGold;
         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
-        endTimerChance = 0 + szeneManager.raid * 3 - upgrades.endTimerDecrease;
+        endTimerChance = -10 + szeneManager.raid * 3 - upgrades.endTimerDecrease;
     }
 
     public void HigherEndTimerChance()
@@ -44,6 +48,12 @@ public class LevelGold : MonoBehaviour
             endTimerStarted = true;
             countdownCoroutine = StartCoroutine(CountdownCoroutine());
             EndTimerText.SetActive(true);
+            if(upgrades.raidcount <= 3)
+            {
+                light1.gameObject.SetActive(true);
+                light2.gameObject.SetActive(true);
+                light3.gameObject.SetActive(true);
+            }
         }
     }
 

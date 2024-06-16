@@ -126,6 +126,13 @@ MonoBehaviour:
   particlesystemRare: {fileID: 951457728850919538}
   particlesystemEpic: {fileID: 5141080066030794063}
   particlesystemLegendary: {fileID: 7912027959470439359}
+  GraveOpen: {fileID: 8300000, guid: 82c7e410de611b147b2e52c0a0397a33, type: 3}
+  common: {fileID: 8300000, guid: 4351547ab084ab4488d981fce156acf7, type: 3}
+  medium: {fileID: 8300000, guid: 7302c8f17f9c6f048b7177f9ba98bc20, type: 3}
+  rare: {fileID: 8300000, guid: 8e0b70973ee56164aaa3a1bacb6fec12, type: 3}
+  epic: {fileID: 8300000, guid: 1222fab5d9b790d4199dd726d27b647a, type: 3}
+  Legendary: {fileID: 8300000, guid: 7ba43aa28dcaccb4ebe5a34ac180ba93, type: 3}
+  empty: {fileID: 8300000, guid: 0d2b899b4370a974da7cac6eb8e44cc6, type: 3}
   increaseChance: 15
 --- !u!1 &951457728850919538
 GameObject:
