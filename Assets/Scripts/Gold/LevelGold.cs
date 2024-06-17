@@ -50,11 +50,18 @@ public class LevelGold : MonoBehaviour
             EndTimerText.SetActive(true);
             if(upgrades.raidcount <= 3)
             {
+                StartCoroutine(BeamWithDelay(5f));
+
+            }
+        }
+    }
+
+    private IEnumerator BeamWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
                 light1.gameObject.SetActive(true);
                 light2.gameObject.SetActive(true);
                 light3.gameObject.SetActive(true);
-            }
-        }
     }
 
     public void StopEndTimer()
