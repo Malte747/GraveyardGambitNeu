@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private bool sprintReady = true;
     private bool sprintReload = true;
     private bool firstExecution = false;
+    private bool isPlayingSound = false;
+    private bool isPlayingSoundSprint = false;
+    private bool isPlayingSoundSlow = false;
 
     [SerializeField] private AudioClip stepnorm; 
     [SerializeField] private AudioClip stepsprint; 
@@ -57,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
          if (Input.GetKey(KeyCode.LeftShift) && sprintReady && _controller.velocity.magnitude != 0)
          {
             SprintMovement();
-            SoundFXManager.instance.PlaySoundFXClipOneTime(stepsprint, transform, 0.2f);
+    
          }
          else if(!sprintReady)
          {
@@ -104,9 +107,20 @@ public class PlayerMovement : MonoBehaviour
                 input *=0.777f;
                 
             }
-            if (input.x != 0 || input.y !=0)
+            if (input.x != 0 || input.y != 0)
             {
-                SoundFXManager.instance.PlaySoundFXClipOneTime(stepnorm, transform, 0.2f);
+            if (!isPlayingSound)
+            {
+                StartCoroutine(PlaySoundWithDelay(0.5f));
+            }
+            }
+            else if (input.x == 0 && input.y ==0)
+            {
+               isPlayingSound = false;
+            }
+            else
+            {
+            isPlayingSound = false;
             }
 
             
@@ -134,6 +148,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+        private IEnumerator PlaySoundWithDelay(float delay)
+    {
+        isPlayingSound = true;
+        yield return new WaitForSeconds(delay);
+        if (isPlayingSound && !isPlayingSoundSprint && !isPlayingSoundSlow)
+        {
+        SoundFXManager.instance.PlaySoundFXClipOneTime(stepnorm, transform, 0.1f);
+        }
+        isPlayingSound = false;
+    }
+
      private void SprintMovement()
     {
         if (_controller.isGrounded)
@@ -145,6 +170,22 @@ public class PlayerMovement : MonoBehaviour
             if (input.x != 0 && input.y !=0)
             {
                 input *=0.777f;
+            }
+
+            if (input.x != 0 || input.y != 0)
+            {
+            if (!isPlayingSoundSprint)
+            {
+                StartCoroutine(PlaySoundWithDelaySprint(0.2f));
+            }
+            }
+            else if (input.x == 0 && input.y ==0)
+            {
+               isPlayingSoundSprint = false;
+            }
+            else
+            {
+            isPlayingSoundSprint = false;
             }
 
             _moveDirection.x = input.x * (_settings.sprint + upgrades.addSpeed);
@@ -166,6 +207,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+        private IEnumerator PlaySoundWithDelaySprint(float delay)
+    {
+        isPlayingSoundSprint = true;
+        yield return new WaitForSeconds(delay);
+        if (isPlayingSoundSprint && !isPlayingSoundSlow && !isPlayingSound)
+        {
+        SoundFXManager.instance.PlaySoundFXClipOneTime(stepsprint, transform, 0.1f);
+        
+        }
+        isPlayingSoundSprint = false;
+    }
+
     private void SlowMovement()
     {
         if (_controller.isGrounded)
@@ -177,9 +230,20 @@ public class PlayerMovement : MonoBehaviour
             {
                 input *=0.777f;
             }
-            if (input.x != 0 || input.y !=0)
+            if (input.x != 0 || input.y != 0)
             {
-                SoundFXManager.instance.PlaySoundFXClipOneTime(stepslow, transform, 0.2f);
+            if (!isPlayingSoundSlow)
+            {
+                StartCoroutine(PlaySoundWithDelaySlow(0.5f));
+            }
+            }
+            else if (input.x == 0 && input.y ==0)
+            {
+               isPlayingSoundSlow = false;
+            }
+            else
+            {
+            isPlayingSoundSlow = false;
             }
 
             _moveDirection.x = input.x * (_settings.slow + upgrades.addSpeed);
@@ -199,6 +263,18 @@ public class PlayerMovement : MonoBehaviour
         {        
             _moveDirection.y -= _settings.gravity * Time.deltaTime;
         }
+    }
+
+        private IEnumerator PlaySoundWithDelaySlow(float delay)
+    {
+        isPlayingSoundSlow = true;
+        yield return new WaitForSeconds(delay);
+        if (isPlayingSoundSlow && !isPlayingSoundSprint && !isPlayingSound)
+        {
+        SoundFXManager.instance.PlaySoundFXClipOneTime(stepslow, transform, 0.1f);
+        
+        }
+        isPlayingSoundSlow = false;
     }
 
     private void Jump()
