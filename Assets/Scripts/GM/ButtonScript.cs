@@ -9,6 +9,8 @@ public class ButtonScript : MonoBehaviour
     SzeneManager szeneManager;
     public GameObject OpenGatesShop;
     public GameObject HeartsShop;
+    [SerializeField] private GameObject ShopButton;
+    [SerializeField] private GameObject gameLost;
 
     private readonly int[] UpgradeCost = { 50, 100, 150, 300, 500};
 
@@ -61,6 +63,18 @@ public class ButtonScript : MonoBehaviour
          HeartsShop.SetActive(true);
          GainALifeText();
         }
+        if(szeneManager.raid >= 1)
+        {
+         ShopButton.SetActive(true);
+        }
+         if (upgrades.health == 0 && upgrades.currentlyPlaying)
+        {
+         GameLost();
+        }
+        else if (upgrades.health == 0)
+        {
+         upgrades.Reset();
+        }
         UpdateStamina();
         UpdateGoldChance();
         UpdateEndTimerDecrease();
@@ -96,6 +110,13 @@ public class ButtonScript : MonoBehaviour
       EndTimerDecreasePrice.gameObject.SetActive(true);
       holdDurationPrice.gameObject.SetActive(true);
       addSpeedPrice.gameObject.SetActive(true);
+      ShopButton.SetActive(false);
+      }
+
+      public void GameLost()
+      {
+         gameLost.SetActive(true);
+
       }
 
     public void SetGlobalGold()

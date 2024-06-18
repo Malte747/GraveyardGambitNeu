@@ -7,6 +7,8 @@ public class ReloadScene : MonoBehaviour
 {
     LevelGold levelGold;
     PasueMenu pauseMenu;
+    PlayerMovement playerMovement;
+    MsuicManager musicManager;
     private GameObject player;
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TMP_Text levelGoldEndText;
@@ -19,6 +21,8 @@ public class ReloadScene : MonoBehaviour
         pauseMenu = GameObject.Find("GM").GetComponent<PasueMenu>();
         player = GameObject.Find("Player(Clone)");
         playerController = player.GetComponent<CharacterController>();
+        playerMovement = GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>();
+         musicManager = GameObject.Find("MusicManager").GetComponent<MsuicManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +30,9 @@ public class ReloadScene : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             levelGold.StopEndTimer();
+            musicManager.EndAllMusic();
             StartCoroutine(DisableController());
+            playerMovement.EnableBlackscreen();
             endScreen.SetActive(true);
             levelEndGold = levelGold.levelGold;
             

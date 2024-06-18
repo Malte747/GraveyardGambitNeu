@@ -40,6 +40,7 @@ public class Upgrades : MonoBehaviour
     public int raidcount = 0;
     [SerializeField] private int highscore = 0;
     private GameObject HighscoreText;
+    public bool currentlyPlaying = false;
 
 
     // Upgrades
@@ -99,6 +100,11 @@ public class Upgrades : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+        if(health == 0)
+        {
+            Reset();
+            SaveGold();
         }
         
         LoadData();
@@ -191,14 +197,8 @@ public class Upgrades : MonoBehaviour
 
     public void LoseALife()
     {
-        if (health > 1)
-        {
+        currentlyPlaying = true;
         health--;
-        }
-        else if (health == 1)
-        {
-            Reset();
-        }
         SaveGold();
     }
 

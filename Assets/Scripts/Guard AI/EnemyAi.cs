@@ -16,6 +16,7 @@ public class EnemyAi : MonoBehaviour
     SzeneManager szeneManager;
     PasueMenu pauseMenu;
     MsuicManager musicManager;
+    PlayerMovement playerMovement;
     public float walkSpeed = 3;
     public float runSpeed = 5;
 
@@ -64,6 +65,7 @@ public class EnemyAi : MonoBehaviour
     {
         player = GameObject.Find("Player(Clone)").transform;
         playerObj = GameObject.Find("Player(Clone)");
+        playerMovement = GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>();
         playerController = playerObj.GetComponent<CharacterController>();
         pauseMenu = GameObject.Find("GM").GetComponent<PasueMenu>();
         musicManager = GameObject.Find("MusicManager").GetComponent<MsuicManager>();
@@ -205,6 +207,7 @@ private IEnumerator CheckSphere()
             musicManager.EndAllMusic();
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
             StartCoroutine(DisableController());
+            playerMovement.EnableBlackscreen();
             endScreenLose.SetActive(true);
             StartCoroutine(ExecuteAfterDelay());
         }

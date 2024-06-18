@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isPlayingSound = false;
     private bool isPlayingSoundSprint = false;
     private bool isPlayingSoundSlow = false;
+    private bool blackscreen = false;
 
     [SerializeField] private AudioClip stepnorm; 
     [SerializeField] private AudioClip stepsprint; 
@@ -96,6 +97,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void EnableBlackscreen()
+    {
+        blackscreen = true;
+    }
+
     private void DefaultMovement()
     {
         if (_controller.isGrounded)
@@ -109,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if (input.x != 0 || input.y != 0)
             {
-            if (!isPlayingSound)
+            if (!isPlayingSound && !blackscreen)
             {
                 StartCoroutine(PlaySoundWithDelay(0.5f));
             }
@@ -174,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (input.x != 0 || input.y != 0)
             {
-            if (!isPlayingSoundSprint)
+            if (!isPlayingSoundSprint && !blackscreen)
             {
                 StartCoroutine(PlaySoundWithDelaySprint(0.2f));
             }
@@ -232,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if (input.x != 0 || input.y != 0)
             {
-            if (!isPlayingSoundSlow)
+            if (!isPlayingSoundSlow && !blackscreen)
             {
                 StartCoroutine(PlaySoundWithDelaySlow(0.5f));
             }
