@@ -22,6 +22,7 @@ public class LevelGold : MonoBehaviour
     [SerializeField] private TMP_Text EndTimeText;
     Upgrades upgrades;
     EnemyAi enemyAi;
+    MsuicManager musicManager;
     SzeneManager szeneManager;
 
 
@@ -31,9 +32,10 @@ public class LevelGold : MonoBehaviour
         levelGoldText = GameObject.Find("LevelGoldText").GetComponent<TextMeshProUGUI>();
         enemyAi = GameObject.Find("Waerter").GetComponent<EnemyAi>();
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
+        musicManager = GameObject.Find("MusicManager").GetComponent<MsuicManager>();
         levelGoldText.text = "" + levelGold;
         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
-        endTimerChance = -10 + szeneManager.raid * 3 - upgrades.endTimerDecrease;
+        endTimerChance = -5 + szeneManager.raid * 3 - upgrades.endTimerDecrease;
     }
 
     public void HigherEndTimerChance()
@@ -76,7 +78,7 @@ public class LevelGold : MonoBehaviour
     private IEnumerator CountdownCoroutine()
     {
         float countdownTime = 60f;
-        
+        musicManager.StartAlarm();
 
         while (countdownTime > 0)
         {

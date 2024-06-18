@@ -15,6 +15,7 @@ public class EnemyAi : MonoBehaviour
     GetChased getchased;
     SzeneManager szeneManager;
     PasueMenu pauseMenu;
+    MsuicManager musicManager;
     public float walkSpeed = 3;
     public float runSpeed = 5;
 
@@ -65,6 +66,7 @@ public class EnemyAi : MonoBehaviour
         playerObj = GameObject.Find("Player(Clone)");
         playerController = playerObj.GetComponent<CharacterController>();
         pauseMenu = GameObject.Find("GM").GetComponent<PasueMenu>();
+        musicManager = GameObject.Find("MusicManager").GetComponent<MsuicManager>();
     }
 
     private void Update()
@@ -200,6 +202,7 @@ private IEnumerator CheckSphere()
         {
             alreadyAttacked = true;
             pauseMenu.DisablePauseToggle();
+            musicManager.EndAllMusic();
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
             StartCoroutine(DisableController());
             endScreenLose.SetActive(true);

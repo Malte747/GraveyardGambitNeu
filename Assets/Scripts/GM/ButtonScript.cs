@@ -51,7 +51,7 @@ public class ButtonScript : MonoBehaviour
     {
         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
-        if (szeneManager.raid >= 3)
+        if (szeneManager.raid >= 4)
         {
          OpenGatesShop.SetActive(true);
          OpenGatesText();

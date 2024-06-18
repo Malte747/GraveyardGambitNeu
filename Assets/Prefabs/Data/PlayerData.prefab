@@ -49,6 +49,9 @@ MonoBehaviour:
   GlobalGoldText: {fileID: 0}
   raidcounter: {fileID: 0}
   highscoreText: {fileID: 0}
+  buttonBuy: {fileID: 8300000, guid: 8104f8929a36c294c845c5246f756040, type: 3}
+  heartbeat: {fileID: 8300000, guid: 9f0d47021f0a8ea448f3961d302fa431, type: 3}
+  gatesopen: {fileID: 8300000, guid: 96c1d886a9c4c4e4dbe3113efa3b981a, type: 3}
   GlobalGold: 0
   health: 3
   raidcount: 0
@@ -62,7 +65,7 @@ MonoBehaviour:
   holdDurationcurrentLevel: 0
   addSpeed: 0
   addSpeedcurrentLevel: 0
-  heartCost: 150
+  heartCost: 100
   openGates: 0
   openGatescost: 50
 --- !u!114 &4761666073300962991

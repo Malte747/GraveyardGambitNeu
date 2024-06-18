@@ -30,6 +30,9 @@ public class Upgrades : MonoBehaviour
     [SerializeField] private TMP_Text GlobalGoldText;
     [SerializeField] private TMP_Text raidcounter;
     [SerializeField] private TMP_Text highscoreText;
+    [SerializeField] private AudioClip buttonBuy;
+    [SerializeField] private AudioClip heartbeat;
+    [SerializeField] private AudioClip gatesopen;
     
 
     public int GlobalGold = 0;
@@ -207,6 +210,8 @@ public class Upgrades : MonoBehaviour
             GlobalGold = GlobalGold - heartCost;
             GlobalGoldText.text = "" + GlobalGold;
             hearts.GainLife();
+            SoundFXManager.instance.PlaySoundFXClip(buttonBuy, transform, 0.5f);
+            SoundFXManager.instance.PlaySoundFXClip(heartbeat, transform, 0.5f);
         }
         else
         {
@@ -258,6 +263,7 @@ public class Upgrades : MonoBehaviour
             staminacurrentLevel++;
             stamina = staminaValues[staminacurrentLevel];
             SaveGold();
+            SoundFXManager.instance.PlaySoundFXClip(buttonBuy, transform, 0.5f);
         }
         else
         {
@@ -274,6 +280,7 @@ public class Upgrades : MonoBehaviour
             goldChanceIncreasecurrentLevel++;
             increaseChance = goldChanceIncrease[goldChanceIncreasecurrentLevel];
             SaveGold();
+            SoundFXManager.instance.PlaySoundFXClip(buttonBuy, transform, 0.5f);
         }
         else
         {
@@ -290,6 +297,7 @@ public class Upgrades : MonoBehaviour
              endTimerDecreasecurrentLevel++;
              endTimerDecrease = endTimerDecreaseValues[endTimerDecreasecurrentLevel];
             SaveGold();
+            SoundFXManager.instance.PlaySoundFXClip(buttonBuy, transform, 0.5f);
         }
         else
         {
@@ -306,6 +314,7 @@ public class Upgrades : MonoBehaviour
              holdDurationcurrentLevel++;
              holdDuration = holdDurationValues[holdDurationcurrentLevel];
             SaveGold();
+            SoundFXManager.instance.PlaySoundFXClip(buttonBuy, transform, 0.5f);
         }
         else
         {
@@ -322,6 +331,7 @@ public class Upgrades : MonoBehaviour
              addSpeedcurrentLevel++;
              addSpeed = addSpeedValues[addSpeedcurrentLevel];
             SaveGold();
+            SoundFXManager.instance.PlaySoundFXClip(buttonBuy, transform, 0.5f);
         }
         else
         {
@@ -341,6 +351,8 @@ public class Upgrades : MonoBehaviour
             openGates++;
             GlobalGold = GlobalGold - openGatescost;
             GlobalGoldText.text = "" + GlobalGold;
+            SoundFXManager.instance.PlaySoundFXClip(buttonBuy, transform, 0.5f);
+            SoundFXManager.instance.PlaySoundFXClip(gatesopen, transform, 0.5f);
         }
         else
         {
