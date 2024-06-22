@@ -39,6 +39,7 @@ public class ReloadScene : MonoBehaviour
             // levelGoldEndText.text = levelEndGold + " Gold erbeutet";
             StartCoroutine(ExecuteAfterDelay());
             pauseMenu.DisablePauseToggle();
+            musicManager.PlayWinSound();
         }
     }
 

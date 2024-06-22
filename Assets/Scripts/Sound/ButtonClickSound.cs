@@ -15,12 +15,12 @@ public class ButtonClickSound : MonoBehaviour
 
     public void ButtonHoverSound()
     {
-        SoundFXManager.instance.PlaySoundFXClip(buttonHover, transform, 0.5f);
+        SoundFXManager.instance.PlaySoundFXClip(buttonHover, transform, 0.3f);
     }
 
         public void ClickSound()
     {
-        SoundFXManager.instance.PlaySoundFXClip(buttonClick, transform, 0.5f);
+        SoundFXManager.instance.PlaySoundFXClip(buttonClick, transform, 0.3f);
     }
 
             public void BuySound()

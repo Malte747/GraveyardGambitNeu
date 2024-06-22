@@ -37,6 +37,7 @@ public class EnemyAi : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool chased = false;
+    private bool chaseSound = true;
 
     // FOV
 
@@ -46,6 +47,13 @@ public class EnemyAi : MonoBehaviour
 
     public LayerMask targetMask;
     public LayerMask obstructionMask;
+
+    // AudioClips
+
+    [SerializeField] private AudioClip[] chaseClips;
+    [SerializeField] private AudioClip[] attackClips;
+    [SerializeField] private GameObject StepClip;
+    [SerializeField] private GameObject RunClip;
 
 
     private void Awake()
@@ -79,7 +87,7 @@ public class EnemyAi : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange && !chased) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
-        if (!playerInSightRange && !playerInAttackRange && chased) StartCoroutine(TurnAround());;
+        if (!playerInSightRange && !playerInAttackRange && chased) StartCoroutine(TurnAround());
 
 
     }
@@ -161,6 +169,8 @@ private IEnumerator CheckSphere()
             targetPoint = 0;
         }
         }
+        RunClip.SetActive(false);
+        StepClip.SetActive(true);
 
     }
 
@@ -170,9 +180,12 @@ private IEnumerator CheckSphere()
         anim.SetBool("Chasing", false);
         anim.SetBool("Turning", true);
         getchased.DontChase();
+        chaseSound = true;
+        RunClip.SetActive(false);
         yield return new WaitForSeconds(5f); 
         anim.SetBool("Turning", false);
         chased = false;
+        
     }
 
     private void SearchWalkPoint()
@@ -192,6 +205,13 @@ private IEnumerator CheckSphere()
         anim.SetBool("Chasing", true);
         anim.SetBool("Turning", false);
         getchased.Chase();
+        if(chaseSound)
+        {
+            chaseSound = false;
+            VoicesManager.instance.PlayRandomVoicesFXClip(chaseClips, transform, 1f);
+        }
+        StepClip.SetActive(false);
+        RunClip.SetActive(true);
     }
 
     public void AttackPlayer()
@@ -205,11 +225,13 @@ private IEnumerator CheckSphere()
             alreadyAttacked = true;
             pauseMenu.DisablePauseToggle();
             musicManager.EndAllMusic();
+            musicManager.PlayLoseSound();
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
             StartCoroutine(DisableController());
             playerMovement.EnableBlackscreen();
             endScreenLose.SetActive(true);
             StartCoroutine(ExecuteAfterDelay());
+            VoicesManager.instance.PlayRandomVoicesFXClip(attackClips, transform, 1f);
         }
     }
 

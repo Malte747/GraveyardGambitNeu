@@ -6,6 +6,8 @@ public class MsuicManager : MonoBehaviour
 {
     [SerializeField] private AudioSource gameMusic;
     [SerializeField] private AudioSource alarmMusic;
+    [SerializeField] private AudioSource winSound;
+    [SerializeField] private AudioSource loseSound;
 
 
 
@@ -25,6 +27,16 @@ public class MsuicManager : MonoBehaviour
     {
         gameMusic.gameObject.SetActive(false);
         alarmMusic.gameObject.SetActive(false);
+    }
+
+    public void PlayWinSound()
+    {
+        winSound.gameObject.SetActive(true);
+    }
+
+    public void PlayLoseSound()
+    {
+        loseSound.gameObject.SetActive(true);
     }
 
 }

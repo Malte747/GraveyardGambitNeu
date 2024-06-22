@@ -307,7 +307,7 @@ public class ButtonScript : MonoBehaviour
       {
         OpenGatesInfoText.text = $"Öffnet nächste Runde alle Tore";
         OpenGatesPrice.gameObject.SetActive(true);
-        addSpeedPriceInfoText.text = "" + upgrades.openGatescost;
+        OpenGatesPriceInfoText.text = "" + upgrades.openGatescost;
       }
       else
       {
