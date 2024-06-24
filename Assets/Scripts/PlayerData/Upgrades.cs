@@ -96,6 +96,7 @@ public class Upgrades : MonoBehaviour
 
 
 
+
     private void Awake()
     {
         
@@ -379,29 +380,33 @@ public class Upgrades : MonoBehaviour
 
     public void CheckSkinUnlock()
     {
-        if(szeneManager.raid == 4)
+        if(szeneManager.raid == 4 && skinunlock < 1)
         {
         skinunlock = 1;
         PlayerPrefs.SetInt(SkinUnlockKey, 1);
         PlayerPrefs.Save();
+        buttonscript.NewSkinUnlocked();
         }
-        if(szeneManager.raid == 8)
+        if(szeneManager.raid == 8 && skinunlock < 2)
         {
         skinunlock = 2;
         PlayerPrefs.SetInt(SkinUnlockKey, 2);
         PlayerPrefs.Save();
+        buttonscript.NewSkinUnlocked();
         }
-        if(szeneManager.raid == 12)
+        if(szeneManager.raid == 12 && skinunlock < 3)
         {
         skinunlock = 3;
         PlayerPrefs.SetInt(SkinUnlockKey, 3);
         PlayerPrefs.Save();
+        buttonscript.NewSkinUnlocked();
         }
-        if(szeneManager.raid == 19)
+        if(szeneManager.raid == 19 && skinunlock < 4)
         {
         skinunlock = 4;
         PlayerPrefs.SetInt(SkinUnlockKey, 4);
         PlayerPrefs.Save();
+        buttonscript.NewSkinUnlocked();
         }
     }
 

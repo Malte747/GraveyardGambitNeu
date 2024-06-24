@@ -53,10 +53,12 @@ public class ButtonScript : MonoBehaviour
 
    [SerializeField] private GameObject[] skinSpotlight;
     [SerializeField] private GameObject[] skinDark;
-       [SerializeField] private TMP_Text[] skinSpotlightText;
+    [SerializeField] private TMP_Text[] skinSpotlightText;
     [SerializeField] private TMP_Text[] skinDarkText;
     [SerializeField] private GameObject[] skinActivate;
     [SerializeField] private GameObject[] skinShowcase;
+
+    [SerializeField] private GameObject newSkinUnlocked;
      private int currentIndex = 0;
 
     
@@ -443,5 +445,15 @@ public class ButtonScript : MonoBehaviour
          public void ActivateSkin5()
     {
       upgrades.ActivateSkin(4);
+    }
+
+    public void NewSkinUnlocked()
+    {
+      newSkinUnlocked.SetActive(true);
+    }
+
+    public void HideNewSkinUnlocked()
+    {
+      newSkinUnlocked.SetActive(false);
     }
 }
