@@ -1093,6 +1093,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1570101635730271008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7130296052449417373}
+  m_Layer: 10
+  m_Name: "LeereH\xFClle"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7130296052449417373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570101635730271008}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3516444069084039024}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1584673606914794206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1523,7 @@ Transform:
   - {fileID: 2670319601842392748}
   - {fileID: 2331112536342822750}
   - {fileID: 7798890653341448364}
+  - {fileID: 7130296052449417373}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2548391101605527277
@@ -1589,6 +1621,25 @@ MonoBehaviour:
   attackClips: []
   StepClip: {fileID: 5661192288509696503}
   RunClip: {fileID: 7619410207202660816}
+  skins:
+  - {fileID: 7669093543286464055}
+  - {fileID: 7808569728290948526}
+  - {fileID: 5022024360141545568}
+  - {fileID: 7022367839269594657}
+  - {fileID: 7517476334523348172}
+  hairSkins:
+  - {fileID: 6204327218406337770}
+  - {fileID: 1570101635730271008}
+  - {fileID: 8166188039074952131}
+  - {fileID: 1570101635730271008}
+  - {fileID: 1570101635730271008}
+  addonSkins:
+  - {fileID: 8636487547193575655}
+  - {fileID: 624708715669592663}
+  - {fileID: 769007081047353493}
+  - {fileID: 3087403813149071602}
+  - {fileID: 1570101635730271008}
+  activeSkin: 0
 --- !u!1 &2656824576784677733
 GameObject:
   m_ObjectHideFlags: 0

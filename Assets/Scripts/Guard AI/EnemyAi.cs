@@ -17,6 +17,7 @@ public class EnemyAi : MonoBehaviour
     PasueMenu pauseMenu;
     MsuicManager musicManager;
     PlayerMovement playerMovement;
+    Upgrades upgrades;
     public float walkSpeed = 3;
     public float runSpeed = 5;
 
@@ -55,6 +56,13 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] private GameObject StepClip;
     [SerializeField] private GameObject RunClip;
 
+    // Skins
+
+    [SerializeField] private GameObject[] skins;
+    [SerializeField] private GameObject[] hairSkins;
+    [SerializeField] private GameObject[] addonSkins;
+    [SerializeField] private int activeSkin = 0;
+
 
     private void Awake()
     {
@@ -77,6 +85,9 @@ public class EnemyAi : MonoBehaviour
         playerController = playerObj.GetComponent<CharacterController>();
         pauseMenu = GameObject.Find("GM").GetComponent<PasueMenu>();
         musicManager = GameObject.Find("MusicManager").GetComponent<MsuicManager>();
+        upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
+        activeSkin = upgrades.skinselect;
+        ToggleSkins(activeSkin);
     }
 
     private void Update()
@@ -257,5 +268,27 @@ private IEnumerator CheckSphere()
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);       
+    }
+
+
+    public void ToggleSkins(int index)
+    {
+        
+        for (int i = 0; i < skins.Length; i++)
+        {
+            skins[i].SetActive(false);
+        }
+        for (int i = 0; i < hairSkins.Length; i++)
+        {
+            hairSkins[i].SetActive(false);
+        }
+        for (int i = 0; i < addonSkins.Length; i++)
+        {
+            addonSkins[i].SetActive(false);
+        }
+
+        skins[index].SetActive(true);
+        hairSkins[index].SetActive(true);
+        addonSkins[index].SetActive(true);
     }
 }

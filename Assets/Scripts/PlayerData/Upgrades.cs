@@ -25,6 +25,8 @@ public class Upgrades : MonoBehaviour
     private const string addSpeedKey = "AddSpeed";
     private const string addSpeedLevelKey = "AddSpeedCurrentLevel";
     private const string OpenGatesKey = "OpenGates";
+    private const string SkinSelectKey = "SkinSelect";
+    private const string SkinUnlockKey = "SkinUnlock";
     LevelGold levelGold;
     [SerializeField] HealthManager hearts;
     [SerializeField] private TMP_Text GlobalGoldText;
@@ -86,6 +88,12 @@ public class Upgrades : MonoBehaviour
     public int openGates = 0;
     public int openGatescost = 50;
 
+    // Skin select
+
+    public int skinselect = 0;
+    public int skinunlock = 0;
+
+
 
 
     private void Awake()
@@ -137,6 +145,7 @@ public class Upgrades : MonoBehaviour
         HighscoreText = GameObject.Find("Highscore");
         highscoreText.text = "Highscore: " + highscore;
         buttonscript = GameObject.Find("GM").GetComponent<ButtonScript>();
+        CheckSkinUnlock();
         if (raidcount > highscore)
         {
             highscore = raidcount;
@@ -168,6 +177,8 @@ public class Upgrades : MonoBehaviour
         addSpeed = PlayerPrefs.GetInt(addSpeedKey, 0);
         addSpeedcurrentLevel = PlayerPrefs.GetInt(addSpeedLevelKey, 0);
         openGates = PlayerPrefs.GetInt(OpenGatesKey, 0);
+        skinselect = PlayerPrefs.GetInt(SkinSelectKey, 0);
+        skinunlock = PlayerPrefs.GetInt(SkinUnlockKey, 0);
     }
     
     public void SaveGold()
@@ -225,6 +236,10 @@ public class Upgrades : MonoBehaviour
         highscore = 0;
         highscoreText.text = "Highscore: " + highscore;
         HighscoreText.SetActive(false);
+        skinunlock = 0;
+        PlayerPrefs.SetInt(SkinUnlockKey, 0);
+        PlayerPrefs.Save();
+        ActivateSkin(0);
     }
 
 
@@ -360,4 +375,41 @@ public class Upgrades : MonoBehaviour
         }
         SaveGold();
     }
+
+
+    public void CheckSkinUnlock()
+    {
+        if(szeneManager.raid == 4)
+        {
+        skinunlock = 1;
+        PlayerPrefs.SetInt(SkinUnlockKey, 1);
+        PlayerPrefs.Save();
+        }
+        if(szeneManager.raid == 8)
+        {
+        skinunlock = 2;
+        PlayerPrefs.SetInt(SkinUnlockKey, 2);
+        PlayerPrefs.Save();
+        }
+        if(szeneManager.raid == 12)
+        {
+        skinunlock = 3;
+        PlayerPrefs.SetInt(SkinUnlockKey, 3);
+        PlayerPrefs.Save();
+        }
+        if(szeneManager.raid == 19)
+        {
+        skinunlock = 4;
+        PlayerPrefs.SetInt(SkinUnlockKey, 4);
+        PlayerPrefs.Save();
+        }
+    }
+
+    public void ActivateSkin(int skin)
+    {
+        skinselect = skin;
+        PlayerPrefs.SetInt(SkinSelectKey, skin);
+        PlayerPrefs.Save();
+    }
+
 }

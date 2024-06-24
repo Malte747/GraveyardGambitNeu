@@ -48,6 +48,17 @@ public class ButtonScript : MonoBehaviour
    public GameObject[] HoldTimer;
    public GameObject[] Speed;
 
+   // skins
+
+
+   [SerializeField] private GameObject[] skinSpotlight;
+    [SerializeField] private GameObject[] skinDark;
+       [SerializeField] private TMP_Text[] skinSpotlightText;
+    [SerializeField] private TMP_Text[] skinDarkText;
+    [SerializeField] private GameObject[] skinActivate;
+    [SerializeField] private GameObject[] skinShowcase;
+     private int currentIndex = 0;
+
     
     void Start()
     {
@@ -80,6 +91,7 @@ public class ButtonScript : MonoBehaviour
         UpdateEndTimerDecrease();
         UpdateHoldTimer();
         UpdateSpeed();
+        CheckSkinUnlockButton();
     } 
 
     public void SetBorders()
@@ -315,4 +327,121 @@ public class ButtonScript : MonoBehaviour
          OpenGatesPrice.gameObject.SetActive(false);
       }
       }
+
+
+
+          public void CheckSkinUnlockButton()
+    {
+
+        for (int i = 0; i < skinSpotlight.Length; i++)
+        {
+            if (i <= upgrades.skinunlock)
+            {
+                skinSpotlight[i].SetActive(true);
+            }
+            else
+            {
+                skinSpotlight[i].SetActive(false);
+            }
+        }
+
+        for (int d = 0; d < skinDark.Length; d++)
+        {
+            if (d > upgrades.skinunlock)
+            {
+                skinDark[d].SetActive(true);
+            }
+            else
+            {
+                skinDark[d].SetActive(false);
+            }
+        }
+
+         for (int i = 0; i < skinSpotlightText.Length; i++)
+        {
+            if (i <= upgrades.skinunlock)
+            {
+                skinSpotlightText[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                skinSpotlightText[i].gameObject.SetActive(false);
+            }
+        }
+
+        for (int d = 0; d < skinDarkText.Length; d++)
+        {
+            if (d > upgrades.skinunlock)
+            {
+                skinDarkText[d].gameObject.SetActive(true);
+            }
+            else
+            {
+                skinDarkText[d].gameObject.SetActive(false);
+            }
+        }
+
+        for (int i = 0; i < skinActivate.Length; i++)
+        {
+            if (i <= upgrades.skinunlock && i != upgrades.skinselect)
+            {
+                skinActivate[i].SetActive(true);
+            }
+            else
+            {
+                skinActivate[i].SetActive(false);
+            }
+        }
+    }
+
+    public void ShowcaseSkins()
+    {
+              for (int i = 0; i < skinShowcase.Length; i++)
+        {
+            skinShowcase[i].SetActive(i == currentIndex);
+        }
+    }
+
+        public void NextSkin()
+    {
+        skinShowcase[currentIndex].SetActive(false);
+
+       
+        currentIndex = (currentIndex + 1) % skinShowcase.Length;
+
+        
+        skinShowcase[currentIndex].SetActive(true);
+    }
+
+            public void LastSkin()
+    {
+        skinShowcase[currentIndex].SetActive(false);
+
+       
+        currentIndex = (currentIndex - 1 + skinShowcase.Length) % skinShowcase.Length;
+
+        
+        skinShowcase[currentIndex].SetActive(true);
+    }
+
+    public void ActivateSkin1()
+    {
+      upgrades.ActivateSkin(0);
+    }
+        public void ActivateSkin2()
+    {
+      upgrades.ActivateSkin(1);
+    }
+        public void ActivateSkin3()
+    {
+      upgrades.ActivateSkin(2);
+    }
+        public void ActivateSkin4()
+    {
+      upgrades.ActivateSkin(3);
+    }
+         public void ActivateSkin5()
+    {
+      upgrades.ActivateSkin(4);
+    }
 }

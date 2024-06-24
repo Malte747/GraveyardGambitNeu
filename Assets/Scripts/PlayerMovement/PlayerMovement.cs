@@ -50,8 +50,8 @@ public class PlayerMovement : MonoBehaviour
         sprintEnergy = sprintEnergy + sprintUpgrade;
         maxsprintEnergy = sprintEnergy;
         Sprint.maxValue = sprintEnergy;
-        sprintIncreaseRate = sprintIncreaseRate + sprintUpgrade / 10;
-        highsprintIncreaseRate = highsprintIncreaseRate + sprintUpgrade / 8;
+        sprintIncreaseRate = sprintIncreaseRate + sprintUpgrade / 8;
+        highsprintIncreaseRate = highsprintIncreaseRate + sprintUpgrade / 6;
     }
     private void Update()
     {
