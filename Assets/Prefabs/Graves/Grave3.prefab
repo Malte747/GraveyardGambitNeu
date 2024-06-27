@@ -30982,6 +30982,9 @@ MonoBehaviour:
   Legendary: {fileID: 8300000, guid: 7ba43aa28dcaccb4ebe5a34ac180ba93, type: 3}
   empty: {fileID: 8300000, guid: 0d2b899b4370a974da7cac6eb8e44cc6, type: 3}
   increaseChance: 15
+  endTimerVoice:
+  - {fileID: 8300000, guid: cad407d658037d24bab6dbfefa4fe4b9, type: 3}
+  - {fileID: 8300000, guid: 6303805b378ad77439be1d30f75a5d7f, type: 3}
 --- !u!1 &7907986423244258223
 GameObject:
   m_ObjectHideFlags: 0

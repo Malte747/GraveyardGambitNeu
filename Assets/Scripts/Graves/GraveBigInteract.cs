@@ -43,7 +43,7 @@ public class GraveBigInteract : MonoBehaviour, IInteractable
                     
                             
                             StartCoroutine(ActivateParticleSystemAfterDelay(2f));
-                            SoundFXManager.instance.PlaySoundFXClip(SuperLegendary, transform, 0.8f);
+                            SoundFXManager.instance.PlaySoundFXClip(SuperLegendary, transform, 0.5f);
                             boxCollider.enabled = false;
                             animator.SetTrigger(LidTrigger);
                             Debug.Log("Jackpot");

@@ -9,12 +9,17 @@ public class ReloadScene : MonoBehaviour
     PasueMenu pauseMenu;
     PlayerMovement playerMovement;
     MsuicManager musicManager;
+    Upgrades upgrades;
+    SzeneManager szeneManager;
     private GameObject player;
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TMP_Text levelGoldEndText;
     private CharacterController playerController;
     private int levelEndGold;
     private float duration = 3f;
+    private bool enterExit = false;
+    [SerializeField] private AudioClip[] WinSound;
+    [SerializeField] private AudioClip WinSoundFirstRound;
     void Start()
     {
         levelGold = GameObject.Find("GM").GetComponent<LevelGold>();
@@ -23,23 +28,34 @@ public class ReloadScene : MonoBehaviour
         playerController = player.GetComponent<CharacterController>();
         playerMovement = GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>();
          musicManager = GameObject.Find("MusicManager").GetComponent<MsuicManager>();
+         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
+         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && !enterExit)
         {
+            enterExit = true;
             levelGold.StopEndTimer();
             musicManager.EndAllMusic();
             StartCoroutine(DisableController());
             playerMovement.EnableBlackscreen();
             endScreen.SetActive(true);
             levelEndGold = levelGold.levelGold;
-            
-            // levelGoldEndText.text = levelEndGold + " Gold erbeutet";
             StartCoroutine(ExecuteAfterDelay());
             pauseMenu.DisablePauseToggle();
             musicManager.PlayWinSound();
+            int randomSound = Random.Range(0, 100);
+            if (upgrades.raidcount == 1)
+            {
+                VoicesManager.instance.PlayVoicesClipOneTime(WinSoundFirstRound, transform, 1f);
+            }
+            else if(randomSound <= 30)
+            {
+                VoicesManager.instance.PlayRandomVoicesFXClip(WinSound, transform, 1f);    
+            }
+
         }
     }
 
@@ -68,6 +84,8 @@ public class ReloadScene : MonoBehaviour
     }
     private IEnumerator ExecuteAfterDelay()
     {
+        upgrades.AddGold();
+        szeneManager.RaidCount();
         yield return new WaitForSeconds(8f);
         levelGold.WinGame();
     }

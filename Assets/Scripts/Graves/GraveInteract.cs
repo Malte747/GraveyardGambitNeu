@@ -23,6 +23,10 @@ public class GraveInteract : MonoBehaviour, IInteractable
         [SerializeField] private AudioClip empty; 
         public int increaseChance;
         Upgrades upgrades;
+
+        // sound
+
+        
         
 
         void Start()
@@ -47,12 +51,22 @@ public class GraveInteract : MonoBehaviour, IInteractable
             if (levelGold != null)
             {
                     int randomAmount = Random.Range(0, 100);
-                    if (randomAmount <= getGoldPercent + increaseChance)
+                    if (randomAmount <= getGoldPercent + increaseChance || upgrades.raidcount == 1)
                     {
                     int randomCountdown = Random.Range(0, 100);
                     if (randomCountdown <= levelGold.endTimerChance)
                     {
-                        levelGold.EndTimer();
+                        int randomSound = Random.Range(0, 100);
+                    if (randomSound <= 49 || upgrades.raidcount <= 3)
+                    {
+                            
+                        	levelGold.EndTimerDelay();
+                    }
+                    else
+                    {
+                            levelGold.EndTimer();
+                    }
+                        
                     }
                     levelGold.HigherEndTimerChance();
                     int randomChance = Random.Range(0, 100);
@@ -61,35 +75,35 @@ public class GraveInteract : MonoBehaviour, IInteractable
                         {
                             levelGold.IncreaseGold(15);
                             particlesystemCommon.gameObject.SetActive(true);
-                            SoundFXManager.instance.PlaySoundFXClip(common, transform, 0.7f);
+                            SoundFXManager.instance.PlaySoundFXClip(common, transform, 0.5f);
                             Debug.Log("Common " + randomChance + " " + increaseChance*4);
                         }
                     else if (randomChance <= 78 - increaseChance*3)
                         {
                             levelGold.IncreaseGold(20);
                             particlesystemMedium.gameObject.SetActive(true);
-                            SoundFXManager.instance.PlaySoundFXClip(medium, transform, 0.8f);
+                            SoundFXManager.instance.PlaySoundFXClip(medium, transform, 0.5f);
                             Debug.Log("Medium " + randomChance + " " + increaseChance*3);
                         }
                     else if (randomChance <= 93 - increaseChance*2)
                         {
                             levelGold.IncreaseGold(30);
                             particlesystemRare.gameObject.SetActive(true);
-                            SoundFXManager.instance.PlaySoundFXClip(rare, transform, 0.8f);
+                            SoundFXManager.instance.PlaySoundFXClip(rare, transform, 0.5f);
                             Debug.Log("Rare " + randomChance + " " + increaseChance*2);
                         }
                     else if (randomChance <= 98 - increaseChance*1)
                         {
                             levelGold.IncreaseGold(40);
                             particlesystemEpic.gameObject.SetActive(true);
-                            SoundFXManager.instance.PlaySoundFXClip(epic, transform, 0.9f);
+                            SoundFXManager.instance.PlaySoundFXClip(epic, transform, 0.5f);
                             Debug.Log("Epic " + randomChance + " " + increaseChance*1);
                         }
                     else 
                         {
                             levelGold.IncreaseGold(60);
                             particlesystemLegendary.gameObject.SetActive(true);
-                            SoundFXManager.instance.PlaySoundFXClip(Legendary, transform, 0.9f);
+                            SoundFXManager.instance.PlaySoundFXClip(Legendary, transform, 0.5f);
                             Debug.Log("Legendary " + randomChance );
                         }
 
@@ -97,7 +111,7 @@ public class GraveInteract : MonoBehaviour, IInteractable
                     else
                     {
                         Debug.Log("Leider kein Gold für dich");
-                        SoundFXManager.instance.PlaySoundFXClip(empty, transform, 0.7f);
+                        SoundFXManager.instance.PlaySoundFXClip(empty, transform, 0.6f);
                     }
                 
             }

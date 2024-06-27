@@ -47,6 +47,7 @@ public class SoundMixerManager : MonoBehaviour
     {
         sfxVolume = level;
         audioMixer.SetFloat("soundFXVolume", Mathf.Log10(level) * 20f);
+        audioMixer.SetFloat("soundFXVolume2", Mathf.Log10(level) * 20f);
         PlayerPrefs.SetFloat(SoundFXVolumeKey, level);
         PlayerPrefs.Save();
         ChangeTextColor();
@@ -88,6 +89,7 @@ public class SoundMixerManager : MonoBehaviour
         if(sfxVolume != 0.0001f)
         {
         audioMixer.SetFloat("soundFXVolume", 0.0001f);
+        audioMixer.SetFloat("soundFXVolume2", 0.0001f);
         PlayerPrefs.SetFloat(SoundFXVolumeKey, 0.0001f);
         sfxVolume = 0.0001f;
         soundFXVolumeSlider.value = sfxVolume;
@@ -97,6 +99,7 @@ public class SoundMixerManager : MonoBehaviour
         else if(sfxVolume == 0.0001f)
         {
         audioMixer.SetFloat("soundFXVolume", 1);
+        audioMixer.SetFloat("soundFXVolume2", 1);
         PlayerPrefs.SetFloat(SoundFXVolumeKey, 1);
         sfxVolume = 1f;
         soundFXVolumeSlider.value = sfxVolume;
@@ -142,6 +145,7 @@ public class SoundMixerManager : MonoBehaviour
         {
             float soundFXVolume = PlayerPrefs.GetFloat(SoundFXVolumeKey);
             audioMixer.SetFloat("soundFXVolume", Mathf.Log10(soundFXVolume) * 20f);
+            audioMixer.SetFloat("soundFXVolume2", Mathf.Log10(soundFXVolume) * 20f);
             soundFXVolumeSlider.value = soundFXVolume;
         }
 

@@ -1589,8 +1589,9 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
+  guardChaseMusic: {fileID: 0}
   walkSpeed: 100
-  runSpeed: 160
+  runSpeed: 155
   walkPoint: {x: 0, y: 0, z: 0}
   patrolPoints:
   - {fileID: 0}
@@ -1617,10 +1618,29 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 128
-  chaseClips: []
-  attackClips: []
+  chaseClips:
+  - {fileID: 8300000, guid: 5a26f7f3618383542952eb5cbc3910c5, type: 3}
+  - {fileID: 8300000, guid: a0a76b00964372740ba5fa33cc498170, type: 3}
+  - {fileID: 8300000, guid: 9b1427ba55e76b44b8963085206073b5, type: 3}
+  - {fileID: 8300000, guid: b0b8a8ea31adb61418fbfa673747b295, type: 3}
+  - {fileID: 8300000, guid: d6c3c7a2ee0724c4db16d8b9df0e82e0, type: 3}
+  - {fileID: 8300000, guid: 683a07d171f6dfa4786e9353d3fd5b36, type: 3}
+  - {fileID: 8300000, guid: 0448383007e414c44b86ab80cc619a82, type: 3}
+  - {fileID: 8300000, guid: c2a2f507a232e1349bfc39ef7a636cd0, type: 3}
+  - {fileID: 8300000, guid: e9de31292835e0346807f859f7f773fe, type: 3}
+  - {fileID: 8300000, guid: fcec19fdcc2b048488cce377d70f70d8, type: 3}
+  attackClips:
+  - {fileID: 8300000, guid: 68a7069a023da1947aee0142e8d38c66, type: 3}
+  - {fileID: 8300000, guid: 78b8a0b314656ec4b823dbd3fc8e809b, type: 3}
+  - {fileID: 8300000, guid: a66117e23e802834f944e0b10248a7a6, type: 3}
+  - {fileID: 8300000, guid: b0125d925eb4a6341aee610f326ed880, type: 3}
+  - {fileID: 8300000, guid: a92a60b48d1a2524aafd5cc16980b544, type: 3}
+  - {fileID: 8300000, guid: 319d8814e90c90a49a0d3093acc4d148, type: 3}
+  - {fileID: 8300000, guid: 7ddb29cd59091324498a3d1a315795fe, type: 3}
+  - {fileID: 8300000, guid: fce93edb71ade264e96d37e51796b337, type: 3}
   StepClip: {fileID: 5661192288509696503}
   RunClip: {fileID: 7619410207202660816}
+  chaseMusic: {fileID: 0}
   skins:
   - {fileID: 7669093543286464055}
   - {fileID: 7808569728290948526}

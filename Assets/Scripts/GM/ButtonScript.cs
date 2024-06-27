@@ -59,6 +59,8 @@ public class ButtonScript : MonoBehaviour
     [SerializeField] private GameObject[] skinShowcase;
 
     [SerializeField] private GameObject newSkinUnlocked;
+    [SerializeField] private AudioClip achievementUnlocked;
+    [SerializeField] private AudioClip[] timeForUpgrade;
      private int currentIndex = 0;
 
     
@@ -80,6 +82,10 @@ public class ButtonScript : MonoBehaviour
         {
          ShopButton.SetActive(true);
         }
+        if(szeneManager.raid == 0)
+        {
+         ShopButton.SetActive(false);
+        }
          if (upgrades.health == 0 && upgrades.currentlyPlaying)
         {
          GameLost();
@@ -88,6 +94,11 @@ public class ButtonScript : MonoBehaviour
         {
          upgrades.Reset();
         }
+        if (szeneManager.raid == 1)
+        {
+          StartCoroutine(ExecuteTimeForUpgradeAfterDelay(1f));
+          
+        }
         UpdateStamina();
         UpdateGoldChance();
         UpdateEndTimerDecrease();
@@ -95,6 +106,12 @@ public class ButtonScript : MonoBehaviour
         UpdateSpeed();
         CheckSkinUnlockButton();
     } 
+
+     private IEnumerator ExecuteTimeForUpgradeAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            VoicesManager.instance.PlayRandomVoicesFXClip(timeForUpgrade, transform, 1f);
+        }
 
     public void SetBorders()
     {
@@ -450,6 +467,7 @@ public class ButtonScript : MonoBehaviour
     public void NewSkinUnlocked()
     {
       newSkinUnlocked.SetActive(true);
+      SoundFXManager.instance.PlaySoundFXClip(achievementUnlocked, transform, 0.3f);
     }
 
     public void HideNewSkinUnlocked()

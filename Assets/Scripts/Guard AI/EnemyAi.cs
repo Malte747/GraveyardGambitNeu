@@ -18,6 +18,7 @@ public class EnemyAi : MonoBehaviour
     MsuicManager musicManager;
     PlayerMovement playerMovement;
     Upgrades upgrades;
+    [SerializeField] GuardChaseMusic guardChaseMusic;
     public float walkSpeed = 3;
     public float runSpeed = 5;
 
@@ -55,6 +56,8 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] private AudioClip[] attackClips;
     [SerializeField] private GameObject StepClip;
     [SerializeField] private GameObject RunClip;
+    [SerializeField] private GameObject chaseMusic;
+    private bool MusicStarted = false;
 
     // Skins
 
@@ -86,6 +89,7 @@ public class EnemyAi : MonoBehaviour
         pauseMenu = GameObject.Find("GM").GetComponent<PasueMenu>();
         musicManager = GameObject.Find("MusicManager").GetComponent<MsuicManager>();
         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
+        guardChaseMusic =  chaseMusic.GetComponent<GuardChaseMusic>();
         activeSkin = upgrades.skinselect;
         ToggleSkins(activeSkin);
     }
@@ -193,9 +197,15 @@ private IEnumerator CheckSphere()
         getchased.DontChase();
         chaseSound = true;
         RunClip.SetActive(false);
+        guardChaseMusic.FadeOutAndDisable();
+        MusicStarted = false;
         yield return new WaitForSeconds(5f); 
+        if(chaseSound)
+        {
         anim.SetBool("Turning", false);
         chased = false;
+        }
+        
         
     }
 
@@ -216,13 +226,26 @@ private IEnumerator CheckSphere()
         anim.SetBool("Chasing", true);
         anim.SetBool("Turning", false);
         getchased.Chase();
+        if (!MusicStarted)
+        {
+            MusicStarted = true;
+            StartCoroutine(ActivateRunMusicAfterDelay(1.5f));
+        }
+        
         if(chaseSound)
         {
             chaseSound = false;
-            VoicesManager.instance.PlayRandomVoicesFXClip(chaseClips, transform, 1f);
+            SoundFXManager.instance.PlayRandomSoundFXClip(chaseClips, transform, 1f);
         }
         StepClip.SetActive(false);
         RunClip.SetActive(true);
+    }
+
+    private IEnumerator ActivateRunMusicAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        chaseMusic.SetActive(true);
+        guardChaseMusic.SetVolumeAndEnable();
     }
 
     public void AttackPlayer()
@@ -242,7 +265,7 @@ private IEnumerator CheckSphere()
             playerMovement.EnableBlackscreen();
             endScreenLose.SetActive(true);
             StartCoroutine(ExecuteAfterDelay());
-            VoicesManager.instance.PlayRandomVoicesFXClip(attackClips, transform, 1f);
+            SoundFXManager.instance.PlayRandomSoundFXClip(attackClips, transform, 0.5f);
         }
     }
 

@@ -27,6 +27,7 @@ public class Upgrades : MonoBehaviour
     private const string OpenGatesKey = "OpenGates";
     private const string SkinSelectKey = "SkinSelect";
     private const string SkinUnlockKey = "SkinUnlock";
+    private const string InactiveBeamKey = "InactiveBeam";
     LevelGold levelGold;
     [SerializeField] HealthManager hearts;
     [SerializeField] private TMP_Text GlobalGoldText;
@@ -40,6 +41,7 @@ public class Upgrades : MonoBehaviour
     public int GlobalGold = 0;
     public int health = 3;
     public int raidcount = 0;
+    public int inactiveBeam = 0;
     [SerializeField] private int highscore = 0;
     private GameObject HighscoreText;
     public bool currentlyPlaying = false;
@@ -180,6 +182,7 @@ public class Upgrades : MonoBehaviour
         openGates = PlayerPrefs.GetInt(OpenGatesKey, 0);
         skinselect = PlayerPrefs.GetInt(SkinSelectKey, 0);
         skinunlock = PlayerPrefs.GetInt(SkinUnlockKey, 0);
+        inactiveBeam = PlayerPrefs.GetInt(InactiveBeamKey, 0);
     }
     
     public void SaveGold()
@@ -198,6 +201,7 @@ public class Upgrades : MonoBehaviour
         PlayerPrefs.SetInt(addSpeedKey, addSpeed);
         PlayerPrefs.SetInt(addSpeedLevelKey,addSpeedcurrentLevel);
         PlayerPrefs.SetInt(OpenGatesKey,openGates);
+        PlayerPrefs.SetInt(InactiveBeamKey,inactiveBeam);
         PlayerPrefs.Save();
     }
 
@@ -261,6 +265,7 @@ public class Upgrades : MonoBehaviour
         addSpeed = 0;
         addSpeedcurrentLevel = 0;
         openGates = 0;
+        inactiveBeam = 0;
         SaveGold();
         hearts.UpdateHearts();
         GlobalGoldText.text = "" + GlobalGold;
@@ -414,6 +419,12 @@ public class Upgrades : MonoBehaviour
     {
         skinselect = skin;
         PlayerPrefs.SetInt(SkinSelectKey, skin);
+        PlayerPrefs.Save();
+    }
+
+    public void InactiveBeamSet()
+    {
+        inactiveBeam = 1;
         PlayerPrefs.Save();
     }
 

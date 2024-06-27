@@ -66,3 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29950cf36f3cb9c4b9e2b76c63311d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endScreen: {fileID: 0}
+  levelGoldEndText: {fileID: 0}
+  WinSound: []
+  WinSoundFirstRound: {fileID: 8300000, guid: 9651b3e69c6a0d64b999ac8a45a5f5ce, type: 3}

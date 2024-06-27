@@ -7,6 +7,7 @@ public class ButtonClickSound : MonoBehaviour
     [SerializeField] private AudioClip buttonHover;
     [SerializeField] private AudioClip buttonClick;
     [SerializeField] private AudioClip buttonBuy;
+    
 
 
 
@@ -23,9 +24,10 @@ public class ButtonClickSound : MonoBehaviour
         SoundFXManager.instance.PlaySoundFXClip(buttonClick, transform, 0.3f);
     }
 
-            public void BuySound()
+        public void BuySound()
     {
         SoundFXManager.instance.PlaySoundFXClip(buttonBuy, transform, 0.5f);
     }
+
 
 }
