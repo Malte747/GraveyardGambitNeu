@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: Graveyard Gambit
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: c1e25033cd16a0f4399f2eda0f234424, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.19117124, g: 0.19659297, b: 0.2264151, a: 1}
   m_ShowUnitySplashScreen: 1
