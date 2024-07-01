@@ -13,6 +13,9 @@ public class Spawning : MonoBehaviour
     [SerializeField] private GameObject[] ExitToActivate;
     [SerializeField] private GameObject gateDeactivate;
      [SerializeField] private GameObject treeDeactivate;
+     [SerializeField] private GameObject wind1;
+     [SerializeField] private GameObject wind2;
+     [SerializeField] private GameObject wind3;
 
 
     void Awake()
@@ -74,10 +77,16 @@ public class Spawning : MonoBehaviour
         if (randomIndex == 0)
         {
             gateDeactivate.SetActive(false);
+            wind1.SetActive(false);
+        }
+        else if (randomIndex == 1)
+        {
+             wind2.SetActive(false);
         }
         else if (randomIndex == 2)
         {
             treeDeactivate.SetActive(false);
+             wind3.SetActive(false);
         }
         }
 
@@ -101,10 +110,16 @@ public class Spawning : MonoBehaviour
         if (index1 == 0 || index2 == 0)
         {
             gateDeactivate.SetActive(false);
+            wind1.SetActive(false);
+        }
+        if (index1 == 1 || index2 == 1)
+        {
+            wind2.SetActive(false);
         }
         if (index1 == 2 || index2 == 2)
         {
             treeDeactivate.SetActive(false);
+            wind3.SetActive(false);
         }
         }
         }

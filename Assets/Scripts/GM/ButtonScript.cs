@@ -68,7 +68,7 @@ public class ButtonScript : MonoBehaviour
     {
         upgrades = GameObject.Find("PlayerData").GetComponent<Upgrades>();
         szeneManager = GameObject.Find("PlayerData").GetComponent<SzeneManager>();
-        if (szeneManager.raid >= 4)
+        if (szeneManager.raid >= 5)
         {
          OpenGatesShop.SetActive(true);
          OpenGatesText();
@@ -467,7 +467,7 @@ public class ButtonScript : MonoBehaviour
     public void NewSkinUnlocked()
     {
       newSkinUnlocked.SetActive(true);
-      SoundFXManager.instance.PlaySoundFXClip(achievementUnlocked, transform, 0.3f);
+      SoundFXManager.instance.PlaySoundFXClip(achievementUnlocked, transform, 0.1f);
     }
 
     public void HideNewSkinUnlocked()
